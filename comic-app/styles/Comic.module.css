@@ -1,0 +1,10 @@
+.ul {
+    padding: 0;
+    max-width: 220px;
+    margin-left: 10px;
+}
+
+.image {
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.4);
+    border: solid black;
+}

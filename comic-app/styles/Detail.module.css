@@ -1,0 +1,20 @@
+.card {
+    padding: 0;
+    margin: 0;
+}
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.heading {
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.span {
+    font-weight: 400;
+}
+
