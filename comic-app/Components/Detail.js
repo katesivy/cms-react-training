@@ -7,17 +7,25 @@ export default function Detail({comic, title, newDate}) {
         return (
             item.name
         )
-    }) : []
-// console.log(comic)
-    // console.log(creators)
-    const formattedCreators = creators.length > 1 ? creators.map((item) =>{
-        return (
-            item + ', '
-        )
-    }) : creators
+    }) : ['none']
 
-    const reversedCreators = typeof(formattedCreators)
-    // console.log(reversedCreators)
+    let singleCreator = [];
+    let multipleCreators = [];
+    let lastCreator = [];
+
+    for (let i = 0; i < creators.length; i++) {
+        const lastI = creators.length - 1
+
+        if (creators[i] === creators[lastI]) {
+            lastCreator.push(creators[i])
+        } else if (creators.length === 1) {
+                singleCreator.push(creators[i])
+        } else if ((creators.length > 1) ) {
+            multipleCreators.push(creators[i] + ', ')
+        } 
+    }
+    let formattedCreators = [...singleCreator, ...multipleCreators, ...lastCreator]
+
     return (
 
         <div>

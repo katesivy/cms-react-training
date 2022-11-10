@@ -1,7 +1,11 @@
+.comicDiv {
+    padding: 10px;
+}
+
 .ul {
     padding: 0;
     max-width: 220px;
-    margin-left: 10px;
+    margin: auto;
 }
 
 .image {

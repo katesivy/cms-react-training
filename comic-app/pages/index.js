@@ -4,8 +4,8 @@ import useFetch from '../hooks/useFetch';
 
 
 export default function Home() {
-  const comicsList = useFetch();
-  console.log('list', comicsList)
+  const { comics } = useFetch();
+  console.log('list', comics)
 
   return (
     <>
@@ -17,8 +17,8 @@ export default function Home() {
       <div >
         <h1>My Comics App</h1>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 100%), 1fr))', gap:'20px', background: 'beige',  placeItems: 'center' }}>
-            {comicsList && comicsList.comics.map((comic, index) => {
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 100%), 1fr))', gap:'20px', background: 'beige' }}>
+            {comics && comics.map((comic, index) => {
                 var month = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
                 var d = new Date(comic.dates[0].date)
                 var newDate = month + ' ' + d.getDate() + ', ' + d.getFullYear()

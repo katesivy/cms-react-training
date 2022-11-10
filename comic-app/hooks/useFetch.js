@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 export default function useFetch () {
     const [comics, setComics] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     var crypto = require('crypto');
     const baseUrl = 'http://gateway.marvel.com/v1/public/comics?';
     // const query = `?limit=${req.query.limit}&nameStartsWith=${req.query.name}`;
@@ -17,17 +18,16 @@ export default function useFetch () {
         const data = await res.json();
         console.log('data', data.data.results)
         setComics(data.data.results)
+        setIsLoading(false)
       } catch (e) {
         console.error(e)
       }
     }
   
     useEffect(() => {
-      getComics(0)
+      getComics()
       }, [])
   
-    console.log(comics)
-
     return (
       {comics}
     )

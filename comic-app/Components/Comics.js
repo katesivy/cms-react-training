@@ -8,8 +8,8 @@ export default function Comics({comic, title, newDate}) {
     return `${src}?w=${width}&q=${quality || 75}`
   }
 
-  const path = comic.images.length ? comic.thumbnail.path + '.' : ''
-  const extenstion = comic.images.length? comic.thumbnail.extension : ''
+  const path = comic.thumbnail.path + '.'
+  const extenstion = comic.thumbnail.extension 
   const imgSrc = path + extenstion
   const image =
       <Image className={styles.image}
@@ -19,12 +19,9 @@ export default function Comics({comic, title, newDate}) {
         width={200}
         height={300}
       />
-  
-
-  console.log(image)
 
   return (
-    <div>
+    <div className={styles.comicDiv}>
         <ul className={styles.ul}>
         {image}
           <Detail comic={comic} title={title} newDate={newDate}/>
