@@ -1,4 +1,4 @@
-import Button from "./Button"
+import Button from "./Button.tsx"
 import styles from '../styles/Detail.module.css'
 
 export default function Detail({comic, title, newDate}) {

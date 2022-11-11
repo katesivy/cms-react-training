@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Comics from '../Components/Comics'
+import Comics from '../Components/Comics.tsx'
 import useFetch from '../hooks/useFetch';
 
 
