@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Detail from "./Detail";
+import Detail from "../Components/Detail";
 import styles from '../styles/Comic.module.css'
 
 type Thumbnail = {
@@ -11,7 +11,9 @@ type Thumbnail = {
 
 type Props = {
   comic: {
-    id: string;
+    id: string,
+    issueNumber: number,
+    creators: string[] | undefined,
     thumbnail: Thumbnail
   }
   title: string,

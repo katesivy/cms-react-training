@@ -1,22 +1,40 @@
-import Button from "./Button.tsx"
+import Button from "./Button"
 import styles from '../styles/Detail.module.css'
+import React from "react"
 
-export default function Detail({comic, title, newDate}) {
+type Thumbnail = {
+    path: string,
+    extension: string,
+    id? : number
+}
 
-    const creators = comic.creators.available > 0 ? comic.creators.items.map((item)=>{
+type Props = {
+    comic: {
+      issueNumber: number
+      creators: any
+      id: string;
+      thumbnail: Thumbnail
+    }
+    title: string,
+    newDate: string,
+  }
+
+export default function Detail({comic, title, newDate}: Props) {
+
+    const creators: string[] = comic.creators.available > 0 ? comic.creators.items.map((item)=>{
         return (
             item.name
         )
-    }) : ['none']
+    }) : ['none listed']
 
-    let singleCreator = [];
-    let multipleCreators = [];
-    let lastCreator = [];
+    let singleCreator: string[] = [];
+    let multipleCreators: string[] = [];
+    let lastCreator: string[] = [];
 
     for (let i = 0; i < creators.length; i++) {
-        const lastI = creators.length - 1
+        const last = creators.length - 1
 
-        if (creators[i] === creators[lastI]) {
+        if (creators[i] === creators[last]) {
             lastCreator.push(creators[i])
         } else if (creators.length === 1) {
                 singleCreator.push(creators[i])
@@ -24,7 +42,7 @@ export default function Detail({comic, title, newDate}) {
             multipleCreators.push(creators[i] + ', ')
         } 
     }
-    let formattedCreators = [...singleCreator, ...multipleCreators, ...lastCreator]
+    let formattedCreators: string[] = [...singleCreator, ...multipleCreators, ...lastCreator]
 
     return (
 
