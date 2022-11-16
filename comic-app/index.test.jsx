@@ -1,7 +1,7 @@
-import {describe, expect, test} from '@jest/globals';
-import { add } from './add'
+// import {describe, expect, test} from '@jest/globals';
+// import { add } from './add'
 
-// const add = (x, y) => x + y;
+const add = (x, y) => x + y;
 
 
 test('add', () => {
