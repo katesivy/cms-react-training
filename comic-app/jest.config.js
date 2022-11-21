@@ -1,16 +1,21 @@
 module.exports = {
   preset: 'ts-jest/presets/js-with-ts',
   testEnvironment: "node",
-//   globals: {
-//       'ts-jest': {
-//           tsconfig: '<rootDir>/test/tsconfig.json',
-//       },
-//   },
+  globals: {
+      'ts-jest': {
+          tsconfig: './tsconfig.test.json'
+      },
+      'expect': true,
+      'test': true
+      },
   transformIgnorePatterns: [
       "node_modules",
   ],
   transform: {
-    "^.+\\.jsx?$": "babel-jest"
+    '^.+\\.(ts|tsx)?$': ['ts-jest', { tsconfig: './tsconfig.test.json' }],
+    "^.+\\.(js|jsx)$": "babel-jest",
+    "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],
+    // <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }]
   },
 }
 

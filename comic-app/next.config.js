@@ -2,6 +2,9 @@
 const nextConfig = 
 {
   reactStrictMode: true,
+  experimental: {
+    forceSwcTransforms: true,
+  },
   swcMinify: true,
   images: {
     remotePatterns: [

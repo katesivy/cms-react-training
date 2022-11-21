@@ -1,3 +1,18 @@
 {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+        [
+            "@babel/preset-react",
+            {
+                "targets": {
+                    "node": "current"
+                },
+            }
+        ]
+        ],
+       "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
   }
+
+//   "@babel/preset-react"
+// "@babel/preset-env"
