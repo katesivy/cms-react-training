@@ -3,9 +3,10 @@
  */
 
 import React from 'react';
-import {describe, expect, test} from '@jest/globals';
+import {describe, jest, expect, test} from '@jest/globals';
 import  Counter from './add'
 import { render, cleanup } from '@testing-library/react';
+import fetchMock from "jest-fetch-mock"
 
 // const add = (x, y) => x + y;
 
