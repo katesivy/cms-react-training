@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 
 
 export default function useFetch () {
-    const [comics, setComics] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [comics, setComics] = useState<string[] | number[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(true)
     var crypto = require('crypto');
-    const baseUrl = 'http://gateway.marvel.com/v1/public/comics?';
+    const baseUrl: string = 'http://gateway.marvel.com/v1/public/comics?';
     // const query = `?limit=${req.query.limit}&nameStartsWith=${req.query.name}`;
-    const timestamp = new Date().getTime();
-    const auth = `${timestamp}f0a85775813b56663b41ab843ff139c218862002bb4ff62ae36790ef6bc4bee9ec3fa24b`; 
-    var hash = crypto.createHash('md5').update(auth).digest('hex');
-    const url = `${baseUrl}ts=${timestamp}&apikey=bb4ff62ae36790ef6bc4bee9ec3fa24b&hash=${hash}`;
+    const timestamp: number = new Date().getTime();
+    const auth: string = `${timestamp}f0a85775813b56663b41ab843ff139c218862002bb4ff62ae36790ef6bc4bee9ec3fa24b`; 
+    var hash: string = crypto.createHash('md5').update(auth).digest('hex');
+    const url: string = `${baseUrl}ts=${timestamp}&apikey=bb4ff62ae36790ef6bc4bee9ec3fa24b&hash=${hash}`;
 
     const getComics = async () => {
       try {
