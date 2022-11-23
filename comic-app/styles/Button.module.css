@@ -1,0 +1,27 @@
+.iconContainer {
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    border: solid black;
+    border-radius: 4em;
+    text-align: center;
+    background-color: black;
+    color: white;
+    transform: translateY(-20px);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* .icon::before {
+    content: '\f0e7';
+    display: inline-block;
+	font-family: "FontAwesome";
+	position: relative;
+	top: 1px;
+	margin-left: 5px;
+	color: #ed3426;
+	font-weight: bold;
+} */
