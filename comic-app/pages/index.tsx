@@ -6,7 +6,6 @@ import useFetch from '../hooks/useFetch';
 
 export default function Home() {
   const { comics } = useFetch();
-  console.log('list', comics)
 
   return (
     <>

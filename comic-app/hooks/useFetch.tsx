@@ -1,23 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { env } from 'process';
 
 
 export default function useFetch () {
     const [comics, setComics] = useState<string[] | number[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(true)
+    const privateKey: string = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
+    const publicKey: string = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
     const baseUrl: string = 'http://gateway.marvel.com/v1/public/comics?';
     // const query = `?limit=${req.query.limit}&nameStartsWith=${req.query.name}`;
     const timestamp: number = new Date().getTime();
-    const auth: string = `${timestamp}f0a85775813b56663b41ab843ff139c218862002bb4ff62ae36790ef6bc4bee9ec3fa24b`; 
+    const auth: string = `${timestamp}${privateKey}${publicKey}`; 
     var hash: string = crypto.createHash('md5').update(auth).digest('hex');
-    const url: string = `${baseUrl}ts=${timestamp}&apikey=bb4ff62ae36790ef6bc4bee9ec3fa24b&hash=${hash}`;
+    const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
 
     const getComics = async () => {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log('data', data.data.results)
+        console.log('data', data.data)
         setComics(data.data.results)
+        console.log('type', typeof(data.data.results))
         setIsLoading(false)
       } catch (e) {
         console.error(e)
@@ -28,6 +32,7 @@ export default function useFetch () {
       getComics()
       }, [])
   
+      if (comics.length < 1)  <h1 data-testid="loading">Loading</h1>
     return (
       {comics}
     )
