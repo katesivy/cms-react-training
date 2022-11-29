@@ -21,7 +21,7 @@ type Props = {
 
 export default function Detail({comic, title, newDate}: Props) {
 
-    const creators: string[] = comic.creators.available > 0 ? comic.creators.items.map((item)=>{
+    const creators: string[] = comic.creators.available > 0 ? comic.creators.items.map((item: { name: string })=>{
         return (
             item.name
         )

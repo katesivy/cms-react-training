@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Detail from "../Components/Detail";
+import Detail from "./Detail";
 import styles from '../styles/Comic.module.css'
 
 type Thumbnail = {
@@ -9,12 +9,24 @@ type Thumbnail = {
   id? : number
 }
 
+type Dates = {
+  date: string;
+}[]
+
 type Props = {
   comic: {
-    id: string,
-    issueNumber: number,
-    creators: string[] | undefined,
-    thumbnail: Thumbnail
+    id: number; 
+    title: string | undefined;
+    issueNumber: number; 
+    creators: string[] | undefined; 
+    thumbnail: Thumbnail; 
+    characters: {};
+    dates?: Dates | undefined;
+    newDate: string;
+    // id: string,
+    // issueNumber: number,
+    // creators: string[] | undefined,
+    // thumbnail: Thumbnail
   }
   title: string,
   newDate: string,
@@ -24,11 +36,11 @@ type LoaderProps = {
   src: string,
   width: number | string,
   quality?: number | string | undefined, 
-  alt?: number | string | undefined,
-  loader?: {}
+  // alt?: number | string | undefined,
+  // loader?: {}
 }
 
-export default function Comics({comic, title, newDate}: Props) {
+export default function Comic({comic, title, newDate}: Props) {
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }

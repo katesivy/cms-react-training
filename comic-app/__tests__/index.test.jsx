@@ -10,6 +10,8 @@ afterEach(() => {
 
 console.error = jest.fn();
 
+
+
 const comics = {
     // data: {
         // results: [

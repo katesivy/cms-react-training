@@ -1,12 +1,33 @@
 import { useEffect, useState } from 'react';
 import { env } from 'process';
 
+type Thumbnail = {
+  path: string,
+  extension: string,
+  id? : number
+}
+
+type Dates = {
+  date: string;
+}[]
+
+type Comics = {
+  id: string; 
+  title: string;
+  issueNumber: number; 
+  creators: string[] | undefined; 
+  thumbnail: Thumbnail; 
+  characters: {};
+  dates?: Dates | undefined;
+  newDate: string;
+}[]
+
 
 export default function useFetch () {
-    const [comics, setComics] = useState<string[] | number[]>([])
+    const [comics, setComics] = useState<Comics>([])
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const privateKey: string = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
-    const publicKey: string = process.env.NEXT_PUBLIC_API_KEY
+    const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
+    const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
     const baseUrl: string = 'http://gateway.marvel.com/v1/public/comics?';
     // const query = `?limit=${req.query.limit}&nameStartsWith=${req.query.name}`;
@@ -19,9 +40,8 @@ export default function useFetch () {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log('data', data.data)
+        console.log('data', data.data.results)
         setComics(data.data.results)
-        console.log('type', typeof(data.data.results))
         setIsLoading(false)
       } catch (e) {
         console.error(e)
