@@ -8,20 +8,32 @@ type Thumbnail = {
     id? : number
 }
 
+type Items = {
+    resourceURI?: string;
+    name?: string
+}[]
+
+type CreatorsObj = {
+    available: number;
+    collectionURI: string;
+    returned: number;
+    items: Items;
+}
+
 type Props = {
     comic: {
-      issueNumber: number
-      creators: any
-      id: string;
-      thumbnail: Thumbnail
+      issueNumber: number;
+      creators: CreatorsObj;
+      id: number;
+      thumbnail: Thumbnail;
     }
     title: string,
     newDate: string,
-  }
+}
 
 export default function Detail({comic, title, newDate}: Props) {
 
-    const creators: string[] = comic.creators.available > 0 ? comic.creators.items.map((item: { name: string })=>{
+    const creators: (string | undefined)[] = comic.creators.available > 0 ? comic.creators.items.map((item)=>{
         return (
             item.name
         )

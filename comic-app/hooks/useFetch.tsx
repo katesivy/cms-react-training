@@ -12,14 +12,13 @@ type Dates = {
 }[]
 
 type Comics = {
-  id: string; 
+  id: number; 
   title: string;
   issueNumber: number; 
   creators: string[] | undefined; 
   thumbnail: Thumbnail; 
-  characters: {};
+  characters: string[] | undefined;
   dates?: Dates | undefined;
-  newDate: string;
 }[]
 
 
@@ -52,7 +51,6 @@ export default function useFetch () {
       getComics()
       }, [])
   
-      if (comics.length < 1)  <h1 data-testid="loading">Loading</h1>
     return (
       {comics}
     )

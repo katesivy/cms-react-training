@@ -3,11 +3,12 @@ import React from 'react';
 import useFetch from '../hooks/useFetch';
 import Comics from '../Components/Comic'
 import FilteredComics from '../Components/FilteredComics';
+import Hero from '../Components/Hero';
 
 
 export default function Home() {
   const { comics } = useFetch();
-
+  
   return (
     <>
     <Head>
@@ -16,7 +17,7 @@ export default function Home() {
     <main style={{ padding: 40}}>
 
       <div >
-        <h1>My Comics App</h1>
+        <Hero />
         <FilteredComics 
         // comic={{
             // id: '',

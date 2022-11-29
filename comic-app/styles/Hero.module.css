@@ -1,0 +1,127 @@
+.heroContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.heroImgContainer {
+    background: transparent 0% 0% no-repeat padding-box;
+    opacity: 1;
+    width: 1440px;
+    height: 650px;
+    /* url('public/hero-photo.png' */
+}
+
+@media (max-width:  640px) {
+  .heroImgContainer {
+    width: 375px;
+    height: 225px;
+  }
+}
+  
+.heroTitleBox {
+    position: relative;
+    top: -488px;
+    width: 572px;
+    height: 148px;
+    /* UI Properties */
+    background: #C24868E6 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .heroTitleBox {
+    top: 0;
+    width: 256px;
+    height: 66px;
+  }
+}
+
+.heroTitle {
+  text-align: center;
+  font: normal normal 900 61px/74px Montserrat;
+  letter-spacing: 0px;
+  color: #F8F8F2;
+  text-shadow: 3px 3px 0px #000000;
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+      font: normal normal 900 27px/33px Montserrat;
+      text-shadow: 2px 2px 0px #000000;
+  }
+}
+
+.newComicsBox {
+    position: absolute;
+    top: 736px;
+    left: 287px;
+    width: 159px;
+    height: 49px;
+    /* UI Properties */
+    background: #9ECFC5 0% 0% no-repeat padding-box;
+    opacity: 1;
+    /* background-color: #9ECFC5; */
+}
+
+.newComics {
+    /* top: 746px; */
+    /* left: 301px; */
+    /* width: 127px;
+    height: 29px; */
+    /* UI Properties */
+    text-align: center;
+    font: normal normal 900 18px/16px Montserrat;
+    letter-spacing: 0px;
+    color: #F8F8F2;
+    text-shadow: 2px 2px 0px #222222;
+    opacity: 1;
+  }
+
+.comingOutDaily {
+    top: 765px;
+    left: 336px;
+    width: 469px;
+    height: 59px;
+    /* UI Properties */
+    text-align: left;
+    font: normal normal 900 49px/16px Montserrat;
+    letter-spacing: 0px;
+    color: #C24868;
+    opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .comingOutDaily {
+    position: relative;
+    top: 300px;
+    left: 20px;
+    width: 239px;
+    height: 30px;
+    /* UI Properties */
+    text-align: left;
+    font: normal normal 900 25px/16px Montserrat;
+  }
+}
+
+.latin {
+    top: 859px;
+    left: 336px;
+    width: 670px;
+    height: 120px;
+    /* UI Properties */
+    text-align: left;
+    font: normal normal normal 20px/32px Montserrat;
+    letter-spacing: 0px;
+    color: #222222;
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .latin {
+      position: relative;
+      top: 300px;
+      left: 0;
+    }
+  }

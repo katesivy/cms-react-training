@@ -15,10 +15,9 @@ export default function Filter ({ setFilter, filter}: Props) {
         <div>
             <label>
                 Filter by:
-                <input 
+                <input
                     onChange={(e) => setFilter(e.target.value)} 
-                    value={filter} 
-                    
+                    value={filter}
                 />
             </label>
                

@@ -16,7 +16,7 @@ export default function CreatorDropdown ({ setFilter, filter}: Props) {
         'Storm: 1010979'
     ]
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleOpen = () => {
       setOpen(!open);
@@ -32,7 +32,7 @@ export default function CreatorDropdown ({ setFilter, filter}: Props) {
             {open ? <div>
                 {creatorArray.map(item => {
                     return (
-                    <ul onClick={() => {setFilter(item), setOpen(false)}}>{item}</ul>
+                        <ul onClick={() => {setFilter(item),  handleOpen}}>{item}</ul>
                     )
                 })}
             </div> : null}

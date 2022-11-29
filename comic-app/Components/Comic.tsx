@@ -36,7 +36,7 @@ type LoaderProps = {
   src: string,
   width: number | string,
   quality?: number | string | undefined, 
-  // alt?: number | string | undefined,
+  alt?: number,
   // loader?: {}
 }
 

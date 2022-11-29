@@ -23,11 +23,13 @@ export default function CharacterDropdown ({ setFilter, filter}: Props) {
         'Storm: 1010979'
     ]
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleOpen = () => {
       setOpen(!open);
     };
+
+    console.log('open status:', open)
   
     return (
       <div>
@@ -39,7 +41,7 @@ export default function CharacterDropdown ({ setFilter, filter}: Props) {
             {open ? <div>
                 {characterArray.map(item => {
                     return (
-                    <ul onClick={() => {setFilter(item), setOpen(false)}}>{item}</ul>
+                    <ul onClick={() => {setFilter(item), handleOpen}}>{item}</ul>
                     )
                 })}
             </div> : null}

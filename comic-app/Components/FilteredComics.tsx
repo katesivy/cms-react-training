@@ -7,16 +7,6 @@ import CharacterDropdown from "./CharacterDropdown";
 import CreatorDropdown from "./CreatorDropdown";
 
 
-// type Thumbnail = {
-//   path: string,
-//   extension: string,
-//   id? : number
-// }
-
-// type Dates = {
-//     date: string;
-// }[]
-
 type Items = {
     resourceURI?: string;
     name?: string
@@ -40,10 +30,9 @@ export default function FilteredComics() {
     const { comics } = useFetch();
     const [filter, setFilter] = useState<string>('Character')
 
-    const charName = filter.split(':')
-    console.log('charName', charName)
-
-    console.log('filter', filter)
+    const charName: string[] = filter.split(':')
+    // console.log('charName', charName)
+    // console.log('filter', filter)
 
     return (
         <>
@@ -57,6 +46,17 @@ export default function FilteredComics() {
             {comics.map((comic) => 
                 comic.characters.items.filter((item)=> 
                     item.name.includes(charName[0])
+                    ).map((item, index) => (
+                        <div className={styles.list}>
+                            <Comic key={index}  comic={comic} title={comic.title} /> 
+                        </div>
+                ))
+            )}               
+        </ul>
+        <ul className={styles.ul}>
+            {comics.map((comic) => 
+                comic.creators.items.filter((item)=> 
+                    item.name.includes(filter)
                     ).map((item, index) => (
                         <div className={styles.list}>
                             <Comic key={index}  comic={comic} title={comic.title} /> 
