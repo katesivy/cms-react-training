@@ -1,31 +1,8 @@
 import Head from 'next/head'
 import React from 'react';
-import Comics from '../Components/Comic'
 import useFetch from '../hooks/useFetch';
-import Filter from '../Components/Filter'
-import ComicsList from '../Components/ComicsList';
-
-
-type Thumbnail = {
-  path: string,
-  extension: string,
-  id? : number
-}
-
-type Dates = {
-  date: string;
-}[]
-
-// type Comic = {
-//   id: number | string; 
-//   title: string | undefined;
-//   issueNumber: number; 
-//   creators: string[] | undefined; 
-//   thumbnail: Thumbnail; 
-//   characters: {};
-//   dates?: Dates | undefined;
-//   newDate: string;
-// } | undefined;
+import Comics from '../Components/Comic'
+import FilteredComics from '../Components/FilteredComics';
 
 
 export default function Home() {
@@ -40,7 +17,7 @@ export default function Home() {
 
       <div >
         <h1>My Comics App</h1>
-        <ComicsList 
+        <FilteredComics 
         // comic={{
             // id: '',
             // issueNumber: 0,

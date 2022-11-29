@@ -1,0 +1,15 @@
+.filterBox {
+    display: inline-flex;
+    width: 100%;
+    padding: 10px;
+    background-color: #222222;
+    color: white;
+}
+
+.ul {
+    background-color: pink;
+}
+
+.list {
+    display: inline-flex;
+}
