@@ -18,29 +18,8 @@ export default function Home() {
 
       <div >
         <Hero />
-        <FilteredComics 
-        // comic={{
-            // id: '',
-            // issueNumber: 0,
-            // creators: undefined,
-            // id: number,
-            // title: string | undefined,
-            // issueNumber: 0, 
-            // creators: string[] | undefined; 
-            // thumbnail: Thumbnail; 
-            // characters: {};
-            // dates?: Dates | undefined;
-            // newDate: string;
-            // thumbnail: {
-            //   path: '',
-            //   extension: '',
-            //   id: undefined
-            // }
-          // }} 
-          // title={''} 
-          // newDate={''} 
-           />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 100%), 1fr))', gap:'20px', background: 'beige' }}>
+        <FilteredComics  />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 100%), 1fr))', background: '#F8F8F2' }}>
             {comics && comics.map((comic, index: number) => {
                 var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
                 var d = new Date(comic.dates[0].date)

@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import styles from '../styles/CreatorDropdown.module.css'
+import styles from '../styles/CreatorDropdown.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
     filter: String;
@@ -28,7 +31,9 @@ export default function CreatorDropdown ({ setFilter, filter}: Props) {
         
             Filter by: 
         
-            <button className={styles.dropdownButton} onClick={handleOpen}>Creator</button>
+            <button className={styles.dropdownButton} onClick={handleOpen}>Creator
+                <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
+            </button>
             {open ? <div>
                 {creatorArray.map(item => {
                     return (

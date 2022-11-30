@@ -2,26 +2,56 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* width: 375px; */
+    height: 875px; 
+    /* height: auto; */
+    position: relative;
+    /* overflow: hidden; */
   }
 
+@media (max-width: 640px) {
+    .heroContainer {
+        height: 525px;
+    }
+}
+
 .heroImgContainer {
-    background: transparent 0% 0% no-repeat padding-box;
+    background: transparent url('/hero-photo.png') 0% 0% no-repeat padding-box;
     opacity: 1;
-    width: 1440px;
-    height: 650px;
-    /* url('public/hero-photo.png' */
+    width: 100vw;
+    /* width: 1440px;
+    height: 650px; */
 }
 
 @media (max-width:  640px) {
   .heroImgContainer {
-    width: 375px;
-    height: 225px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 100vw;
+    /* width: 200px; */
+    height: 120px; 
+    /* width: 375px; */
+    /* height: 225px; */
+    /* width: auto; */
+    /* height: auto; */
+  }
+}
+
+.borderImgContainer {
+    position: relative;
+    top: -150px;
+}
+
+@media (max-width: 640px) {
+  .borderImgContainer {
+    top: 275px;
   }
 }
   
 .heroTitleBox {
     position: relative;
-    top: -488px;
+    top: -525px;
+    left: 70px;
     width: 572px;
     height: 148px;
     /* UI Properties */
@@ -31,19 +61,19 @@
 
 @media (max-width: 640px) {
   .heroTitleBox {
-    top: 0;
+    top: -100px;
     width: 256px;
     height: 66px;
   }
 }
 
 .heroTitle {
-  text-align: center;
-  font: normal normal 900 61px/74px Montserrat;
-  letter-spacing: 0px;
-  color: #F8F8F2;
-  text-shadow: 3px 3px 0px #000000;
-  opacity: 1;
+    text-align: center;
+    font: normal normal 900 61px/74px Montserrat;
+    letter-spacing: 0px;
+    color: #F8F8F2;
+    text-shadow: 3px 3px 0px #000000;
+    opacity: 1;
 }
 
 @media (max-width: 640px) {
@@ -53,35 +83,45 @@
   }
 }
 
+.headingContainer {
+  position: absolute;
+  top: 600px;
+  width: 500px;
+  height: 100px;
+}
+
 .newComicsBox {
     position: absolute;
-    top: 736px;
-    left: 287px;
+    /* top: 736px; */
+    /* left: -90px; */
+    transform: translate(-50px, -2px) rotate(-5deg);
+    text-align: center;
     width: 159px;
-    height: 49px;
+    height: 39px;
     /* UI Properties */
-    background: #9ECFC5 0% 0% no-repeat padding-box;
+    background: #9ECFC5;
     opacity: 1;
     /* background-color: #9ECFC5; */
 }
 
 .newComics {
-    /* top: 746px; */
-    /* left: 301px; */
-    /* width: 127px;
-    height: 29px; */
+    position: relative;
+    top: -20px;
+    left: 10px;
+    width: 127px;
+    height: 0;
     /* UI Properties */
-    text-align: center;
+    /* text-align: center; */
     font: normal normal 900 18px/16px Montserrat;
     letter-spacing: 0px;
     color: #F8F8F2;
     text-shadow: 2px 2px 0px #222222;
     opacity: 1;
-  }
+}
 
 .comingOutDaily {
-    top: 765px;
-    left: 336px;
+    position: absolute;
+    /* top: 565px; */
     width: 469px;
     height: 59px;
     /* UI Properties */
@@ -90,12 +130,13 @@
     letter-spacing: 0px;
     color: #C24868;
     opacity: 1;
+    z-index: 4;
 }
 
 @media (max-width: 640px) {
   .comingOutDaily {
     position: relative;
-    top: 300px;
+    top: 250px;
     left: 20px;
     width: 239px;
     height: 30px;
@@ -106,8 +147,8 @@
 }
 
 .latin {
-    top: 859px;
-    left: 336px;
+    position: absolute;
+    top: 659px;
     width: 670px;
     height: 120px;
     /* UI Properties */
@@ -118,10 +159,17 @@
     opacity: 1;
   }
 
-  @media (max-width: 640px) {
+@media (max-width: 640px) {
     .latin {
       position: relative;
-      top: 300px;
+      top: 220px;
       left: 0;
+      width: 80vw;
     }
-  }
+}
+
+@media (min-width: 641px) and (max-width: 1040px) {
+    .latin {
+      width: 80vw;
+    }
+}

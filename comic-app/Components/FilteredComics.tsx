@@ -12,19 +12,19 @@ type Items = {
     name?: string
 }[]
 
-type Characters = {
-    length: number;
-    name: string;
-    available?: number;
-    collectionURI?: string;
-    returned?: number;
-    items?: Items;
-}[]
+// type Characters = {
+//     length: number;
+//     name: string;
+//     available?: number;
+//     collectionURI?: string;
+//     returned?: number;
+//     items?: Items;
+// }[]
 
-type Names = {
-    resourceURI?: string;
-    name?: string | undefined
-}[]
+// type Names = {
+//     resourceURI?: string;
+//     name?: string | undefined
+// }[]
 
 export default function FilteredComics() {
     const { comics } = useFetch();

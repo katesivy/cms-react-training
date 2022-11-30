@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import Comic from "./Comic";
-import Filter from "./Filter";
 import styles from '../styles/CharacterDropdown.module.css';
-import useFetch from '../hooks/useFetch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+// import styles from '../styles/Button.module.css'
 
 type Props = {
     filter: String;
@@ -37,7 +38,9 @@ export default function CharacterDropdown ({ setFilter, filter}: Props) {
         
             Filter by: 
         
-            <button className={styles.dropdownButton} onClick={handleOpen}>Character</button>
+            <button className={styles.dropdownButton} onClick={handleOpen}>Character
+                <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
+            </button>
             {open ? <div>
                 {characterArray.map(item => {
                     return (
