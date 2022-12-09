@@ -59,7 +59,7 @@ export default function Detail({comic, title, newDate}: Props) {
     return (
 
         <div>
-            <Button />
+            
             <div className={styles.card}>
                 <h3 className={styles.title}>{title}</h3>
                 <div className={styles.innerText}>

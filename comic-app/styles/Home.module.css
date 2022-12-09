@@ -1,25 +1,15 @@
-.heroContainer {
-  background: transparent 0% 0% no-repeat padding-box;
-  opacity: 1;
+.comicsSection {
+  display: flex;
+  width: 100%;
 }
-/* url('public/hero-photo.png' */
+
+.grid {
+  max-width: 80%;
+}
 
 
-.heroTitle {
-  top: 251px;
-  left: 434px;
-  width: 572px;
-  height: 148px;
-  /* UI Properties */
-  background: #C24868E6 0% 0% no-repeat padding-box;
-  opacity: 1;
-}
 
 /* 
-
-.container {
-  padding: 0 2rem;
-}
 
 .main {
   min-height: 100vh;
@@ -145,4 +135,4 @@
   .logo img {
     filter: invert(1);
   }
-} */
+} */ 

@@ -3,7 +3,9 @@ import React from 'react';
 import useFetch from '../hooks/useFetch';
 import styles from '../styles/Hero.module.css';
 import Image from 'next/image';
+import heroPhoto2 from '../public/hero-photo@2x.png';
 import heroPhoto from '../public/hero-photo.png';
+import borderPhoto2 from '../public/halftone@2x.png';
 import borderPhoto from '../public/halftone.png';
 
 type LoaderProps = {
@@ -19,26 +21,27 @@ export default function Hero() {
   }
 
     const heroImage: any =
-        <Image className={styles.image}
+        <Image className={styles.heroImage}
             loader={myLoader}
-            src={heroPhoto}
+            src={heroPhoto2}
             alt='hero img'
-            // width={375}
-            height={550}
+            width={1440}
+            height={650}
             // sizes="(max-width: 400px) 100wv,
             // (max-width: 640px) 100vw,
             // 33vw"
-            // fill
+            layout="responsive"
             priority
         />
 
     const borderImage: any =
-        <Image className={styles.image}
+        <Image className={styles.borderImage}
             loader={myLoader}
             src={borderPhoto}
-            alt='hero img'
+            alt='hero border'
             // width={375}
             // height={225}
+            
             sizes="(max-width: 400px) 100wv,
             (max-width: 640px) 100vw,
             33vw"

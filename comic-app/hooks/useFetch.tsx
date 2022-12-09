@@ -12,6 +12,7 @@ type Dates = {
 }[]
 
 type Comics = {
+  isFavorite: boolean;
   id: number; 
   title: string;
   issueNumber: number; 

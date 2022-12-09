@@ -29,8 +29,6 @@ export default function CharacterDropdown ({ setFilter, filter}: Props) {
     const handleOpen = () => {
       setOpen(!open);
     };
-
-    console.log('open status:', open)
   
     return (
       <div>

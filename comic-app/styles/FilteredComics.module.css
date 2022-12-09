@@ -6,11 +6,18 @@
 
 .filterBox {
     display: inline-flex;
-    width: 100%;
+    margin-top: 200px;
+    width: 80%;
     padding: 10px;
     background-color: #222222;
     color: white;
 }
+
+/* @media (max-width: 640px) {
+    .filterBox {
+
+    }
+} */
 
 .ul {
     background-color: pink;

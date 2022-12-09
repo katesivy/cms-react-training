@@ -1,0 +1,13 @@
+.favBox {
+    height: 700px;
+    width: 20%;
+    background-color: gray;
+    transform: translateY(-65px);
+    margin-left: 10px;
+}
+
+.title {
+    color: white;
+    padding: 20px;
+    font-weight: 900;
+}
