@@ -1,14 +1,16 @@
 import React, { createContext, useContext, useState } from 'react';
 import Comic from '../Components/Comic';
+import { useFavsArray } from '../hooks/useFavsArray';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 
 export const AppContext = createContext({
-    comicStatus: false,
-    favArray: [],
+    // comicStatus: false,
+    // favArray: [],
 });
 
 export default function PageWrapper ({ children }: any) {
-    const {isFavorite, setIsFavorite, toggleFavorite} = useToggleFavorites();
+    const { isFavorite, setIsFavorite, toggleFavorite, } = useToggleFavorites();  
+    const { favArray, setFavArray } = useFavsArray();
 
     return (
         <AppContext.Provider
@@ -16,8 +18,9 @@ export default function PageWrapper ({ children }: any) {
                 isFavorite: isFavorite,
                 setIsFavorite: setIsFavorite,
                 toggleFavorite: toggleFavorite,
-                comicStatus: isFavorite,
-                favArray: []
+                comicStatus: false,
+                favArray: [], 
+                setFavArray: setFavArray
             }}
         >
             {children}

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { env } from 'process';
+import axios from 'axios';
+import ReactPaginate from 'react-paginate';
+import Router, { withRouter } from 'next/router'
 
 type Thumbnail = {
   path: string,
@@ -7,25 +9,32 @@ type Thumbnail = {
   id? : number
 }
 
+type Characters = {
+  available: number,
+  collectionURI: string,
+  items: string[],
+  returned: number
+}
+
 type Dates = {
   date: string;
-}[]
+  type: string;
+}[] 
 
-type Comics = {
+interface Comics {
   isFavorite: boolean;
-  id: number; 
+  id: string; 
   title: string;
   issueNumber: number; 
   creators: string[] | undefined; 
   thumbnail: Thumbnail; 
-  characters: string[] | undefined;
+  characters: Characters | undefined;
   dates?: Dates | undefined;
 }[]
 
 
 export default function useFetch () {
     const [comics, setComics] = useState<Comics>([])
-    const [isLoading, setIsLoading] = useState<boolean>(true)
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
@@ -35,6 +44,10 @@ export default function useFetch () {
     const auth: string = `${timestamp}${privateKey}${publicKey}`; 
     var hash: string = crypto.createHash('md5').update(auth).digest('hex');
     const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
+    
+    const [isLoading, setLoading] = useState<boolean>(false)
+    const startLoading = () => setLoading(true);
+    const stopLoading = () => setLoading(false);
 
     const getComics = async () => {
       try {
@@ -42,7 +55,7 @@ export default function useFetch () {
         const data = await res.json();
         console.log('data', data.data.results)
         setComics(data.data.results)
-        setIsLoading(false)
+        setLoading(false)
       } catch (e) {
         console.error(e)
       }
@@ -50,15 +63,18 @@ export default function useFetch () {
   
     useEffect(() => {
       getComics()
+
       }, [])
-  
+
+
+
+    
     return (
+    
       {comics}
+
     )
 }
 
 
-// const fetcher = (url) => fetch(url).then((res) => res.json());
-// const fetcher = async (url) => await axios.get(url).then((res) => res.data);
-// const fetcher = (...args) => fetch(...args).then((res) => res.json())
 

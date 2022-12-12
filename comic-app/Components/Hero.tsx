@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React from 'react';
+import React, { useContext } from 'react';
 import useFetch from '../hooks/useFetch';
 import styles from '../styles/Hero.module.css';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import heroPhoto2 from '../public/hero-photo@2x.png';
 import heroPhoto from '../public/hero-photo.png';
 import borderPhoto2 from '../public/halftone@2x.png';
 import borderPhoto from '../public/halftone.png';
+import { AppContext } from '../state/PageWrapper';
 
 type LoaderProps = {
   src: string,
@@ -16,6 +17,8 @@ type LoaderProps = {
 
 export default function Hero() {
   const { comics } = useFetch();
+  const { favArray }  = useContext(AppContext);
+//   console.log('favArray from Hero', favArray.length)
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
@@ -58,6 +61,7 @@ export default function Hero() {
             <div className={styles.heroTitleBox}>
                 <h1 className={styles.heroTitle}>
                     Comic Closet
+                    <p>My Favorites: {favArray.length}</p>
                 </h1>
             </div>
             <div className={styles.headingContainer}>

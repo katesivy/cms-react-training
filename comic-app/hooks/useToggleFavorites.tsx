@@ -1,14 +1,12 @@
 import {useState} from "react";
 import useFetch from "./useFetch";
 
-export const useToggleFavorites = () => {
-        const { comics } = useFetch();
-        const [isFavorite, setIsFavorite] = useState(false);
+export const useToggleFavorites = (initial: boolean | (() => boolean | undefined) | undefined) => {
+        const [isFavorite, setIsFavorite] = useState<boolean | undefined>(initial);
     
         const toggleFavorite = () => {
-            comics.map((comic, index) => {
-                comic.isFavorite = isFavorite;
-            })
+            setIsFavorite( isFavorite => !isFavorite)
+            console.log('clicked')
         }
-        return {isFavorite, setIsFavorite, toggleFavorite}
+        return {isFavorite, setIsFavorite, toggleFavorite }
     }

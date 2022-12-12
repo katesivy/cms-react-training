@@ -9,31 +9,36 @@ type Thumbnail = {
 }
 
 type Items = {
-    resourceURI?: string;
-    name?: string
-}[]
+    resourceURI: string;
+    name: string;
+    role: string;
+}
 
 type CreatorsObj = {
     available: number;
     collectionURI: string;
+    items?: Items;
     returned: number;
-    items: Items;
 }
 
 type Props = {
     comic: {
-      issueNumber: number;
-      creators: CreatorsObj;
-      id: number;
-      thumbnail: Thumbnail;
+        isFavorite: boolean,
+        id: string; 
+        title: string;
+        issueNumber: number; 
+        creators: CreatorsObj; 
+        thumbnail: Thumbnail; 
+        characters: {};
     }
+    isFavorite: boolean,
     title: string,
     newDate: string,
 }
 
 export default function Detail({comic, title, newDate}: Props) {
 
-    const creators: (string | undefined)[] = comic.creators.available > 0 ? comic.creators.items.map((item)=>{
+    const creators: (string)[] = comic.creators.available > 0 ? comic.creators.items.map((item: { name: any })=>{
         return (
             item.name
         )
