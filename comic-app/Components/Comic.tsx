@@ -8,7 +8,7 @@ import { AppContext } from "../state/PageWrapper"
 type Thumbnail = {
   path: string,
   extension: string,
-  id? : number
+  id? : number | undefined
 }
 
 // type Dates = {
@@ -23,6 +23,7 @@ type Props = {
     creators: string[] | undefined; 
     thumbnail: Thumbnail; 
     characters: {};
+    dates?: any;
     // dates?: Dates | undefined;
     // newDate: string;
     isFavorite: boolean,
@@ -30,6 +31,17 @@ type Props = {
   title: string,
   newDate: string,
 }
+
+// { 
+//   dates?: any; 
+//   title: any; 
+//   id?: string; 
+//   issueNumber?: number; 
+//   creators?: string[] | undefined; 
+//   thumbnail?: { path: string; extension: string; id?: number | undefined; }; 
+//   characters?: {}; 
+//   isFavorite?: boolean; 
+// }
 
 type LoaderProps = {
   src: string,
@@ -41,12 +53,9 @@ type LoaderProps = {
 
 
 export default function Comic ({comic, title, newDate}: Props) {
-  const { favArray, isFavorite }  = useContext(AppContext);
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
-
-
 
   const path: string = comic.thumbnail.path + '.'
   const extenstion: string = comic.thumbnail.extension 

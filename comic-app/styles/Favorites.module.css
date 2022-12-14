@@ -1,8 +1,9 @@
 .favBox {
-    height: 700px;
-    width: 20%;
-    background-color: gray;
-    transform: translateY(-65px);
+    height: auto;
+    /* width: 20%; */
+    background-color: #222222;
+    color: #F8F8F2;
+    transform: translateY(165px);
     margin-left: 10px;
 }
 

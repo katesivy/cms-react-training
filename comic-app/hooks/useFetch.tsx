@@ -53,7 +53,7 @@ export default function useFetch () {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log('data', data.data.results)
+        // console.log('data', data.data.results)
         setComics(data.data.results)
         setLoading(false)
       } catch (e) {
@@ -62,7 +62,7 @@ export default function useFetch () {
     }
   
     useEffect(() => {
-      // getComics()
+      getComics()
 
       }, [])
 

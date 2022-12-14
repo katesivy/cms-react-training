@@ -1,0 +1,18 @@
+.comicsSection {
+    /* display: flex; */
+    width: 100%;
+}
+  
+.filterBox {
+      display: inline-flex;
+      margin-top: 200px;
+      width: 100%;
+      padding: 10px;
+      background-color: #222222;
+      color: white;
+}
+
+.grid {
+    max-width: 100%;
+}
+  

@@ -1,13 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useRef} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { faBolt, faTachographDigital } from '@fortawesome/free-solid-svg-icons'
+import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/Button.module.css'
-import { useToggleFavorites } from '../hooks/useToggleFavorites'
-import { useCountFavs } from '../hooks/useCountFavs'
 import { AppContext } from '../state/PageWrapper'
-import FilteredComics from './FilteredComics'
-import useFetch from '../hooks/useFetch'
+
 
 type Thumbnail = {
     path: string,
@@ -30,19 +27,22 @@ type Props = {
 
 export default function Button ({comic}: Props) {
     const { favArray, setFavArray, toggleFavorite }  = useContext(AppContext);
-
+    const ref = useRef();
+    
     const handleClick = () => {
         if (favArray.length < 10) {
-            let existing = favArray.includes(comic.id)
+            let existing = favArray.includes(comic)
             if (existing) {
-                let newArray = favArray.filter(item => item !== comic.id)
+                let newArray = favArray.filter(item => item !== comic)
                 setFavArray(newArray)
                 localStorage.setItem('favorites', JSON.stringify(newArray))
             } else {
-                favArray.push(comic.id)
+                favArray.push(comic)
                 let newArray = favArray;
                 setFavArray(newArray)
                 localStorage.setItem('favorites', JSON.stringify(newArray))
+                ref.current.classList.add('favorite')
+                console.log('class', ref.current.className)
             }
             toggleFavorite()
         }
@@ -50,7 +50,7 @@ export default function Button ({comic}: Props) {
    
     return (
         <>
-        <button className={styles.iconContainer}
+        <button className={styles.iconContainer} ref={ref}
             onClick={handleClick}
         >
             <FontAwesomeIcon className={styles.icon} icon={faBolt} />

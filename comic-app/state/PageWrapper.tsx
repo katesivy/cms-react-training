@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import Comic from '../Components/Comic';
 import { useFavsArray } from '../hooks/useFavsArray';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
+import { useDropdown } from '../hooks/useDropdown';
 
 export const AppContext = createContext({
 
@@ -10,6 +11,7 @@ export const AppContext = createContext({
 export default function PageWrapper ({ children }: any) {
     const { isFavorite, setIsFavorite, toggleFavorite, } = useToggleFavorites();  
     const { favArray, setFavArray } = useFavsArray();
+    const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useDropdown();
 
     return (
         <AppContext.Provider
@@ -17,9 +19,12 @@ export default function PageWrapper ({ children }: any) {
                 isFavorite: isFavorite,
                 setIsFavorite: setIsFavorite,
                 toggleFavorite: toggleFavorite,
-                // comicStatus: false,
                 favArray: favArray, 
-                setFavArray: setFavArray
+                setFavArray: setFavArray,
+                characterFilter: characterFilter,
+                setCharacterFilter: setCharacterFilter,
+                creatorFilter: creatorFilter,
+                setCreatorFilter: setCreatorFilter
             }}
         >
             {children}
@@ -28,3 +33,4 @@ export default function PageWrapper ({ children }: any) {
 }
 
 export const useAppState = () => useContext(AppContext)
+
