@@ -38,6 +38,8 @@ type LoaderProps = {
   alt?: number,
 }
 
+
+
 export default function Comic ({comic, title, newDate}: Props) {
   const { favArray, isFavorite }  = useContext(AppContext);
   const myLoader = ({ src, width, quality }: LoaderProps) => {

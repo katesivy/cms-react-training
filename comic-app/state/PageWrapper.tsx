@@ -4,8 +4,7 @@ import { useFavsArray } from '../hooks/useFavsArray';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 
 export const AppContext = createContext({
-    // comicStatus: false,
-    // favArray: [],
+
 });
 
 export default function PageWrapper ({ children }: any) {
@@ -18,8 +17,8 @@ export default function PageWrapper ({ children }: any) {
                 isFavorite: isFavorite,
                 setIsFavorite: setIsFavorite,
                 toggleFavorite: toggleFavorite,
-                comicStatus: false,
-                favArray: [], 
+                // comicStatus: false,
+                favArray: favArray, 
                 setFavArray: setFavArray
             }}
         >

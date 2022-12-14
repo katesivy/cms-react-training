@@ -6,6 +6,8 @@ import styles from '../styles/Button.module.css'
 import { useToggleFavorites } from '../hooks/useToggleFavorites'
 import { useCountFavs } from '../hooks/useCountFavs'
 import { AppContext } from '../state/PageWrapper'
+import FilteredComics from './FilteredComics'
+import useFetch from '../hooks/useFetch'
 
 type Thumbnail = {
     path: string,
@@ -27,34 +29,29 @@ type Props = {
 }
 
 export default function Button ({comic}: Props) {
-    const { favArray, isFavorite, setIsFavorite }  = useContext(AppContext);
-    // const [isFavorite, setIsFavorite] = useState<boolean>(true);
-    const handleClick = (isFavorite: boolean) => {
-        setIsFavorite( (isFavorite: any) => !isFavorite)
-        comic.isFavorite = isFavorite
-        console.log('clicked title:', comic.title, comic.isFavorite)
-       
-    }
+    const { favArray, setFavArray, toggleFavorite }  = useContext(AppContext);
 
-    useEffect(() => {
-        if ((comic.isFavorite  == true) && (favArray.length <= 9)) {
-          console.log('adding title', comic.title, comic.isFavorite)
-          favArray.push(comic.title)
+    const handleClick = () => {
+        if (favArray.length < 10) {
+            let existing = favArray.includes(comic.id)
+            if (existing) {
+                let newArray = favArray.filter(item => item !== comic.id)
+                setFavArray(newArray)
+                localStorage.setItem('favorites', JSON.stringify(newArray))
+            } else {
+                favArray.push(comic.id)
+                let newArray = favArray;
+                setFavArray(newArray)
+                localStorage.setItem('favorites', JSON.stringify(newArray))
+            }
+            toggleFavorite()
         }
-        localStorage.setItem('favorites', JSON.stringify(favArray))
-        // if (comic.isFavorite  !== true) {
-        //     // console.log('removing title', comic.title)
-        //     favArray.splice(comic.title)
-        // }
-        // console.log('favArray', favArray)
-        // localStorage.setItem('favorites', JSON.stringify(favArray))
-      }, [isFavorite])
+    }
    
-    console.log('array', favArray)
     return (
-<>
+        <>
         <button className={styles.iconContainer}
-            onClick={() => {handleClick(isFavorite)}}
+            onClick={handleClick}
         >
             <FontAwesomeIcon className={styles.icon} icon={faBolt} />
         </button>

@@ -62,7 +62,7 @@ export default function useFetch () {
     }
   
     useEffect(() => {
-      getComics()
+      // getComics()
 
       }, [])
 
