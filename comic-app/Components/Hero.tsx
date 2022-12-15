@@ -7,7 +7,9 @@ import heroPhoto2 from '../public/hero-photo@2x.png';
 import heroPhoto from '../public/hero-photo.png';
 import borderPhoto2 from '../public/halftone@2x.png';
 import borderPhoto from '../public/halftone.png';
+import logo2 from '../public/logo@2x.png'
 import { AppContext } from '../state/PageWrapper';
+import TopNavs from './TopNavs';
 
 type LoaderProps = {
   src: string,
@@ -49,9 +51,25 @@ export default function Hero() {
             (max-width: 640px) 100vw,
             33vw"
         />
+    
+        const logoImage: any =
+        <Image className={styles.logo2}
+            loader={myLoader}
+            src={logo2}
+            alt='logo'
+            // width={100}
+            // height={5}
+            // sizes="(max-width: 400px) 100wv,
+            // (max-width: 640px) 100vw,
+            // 33vw"
+            layout="responsive"
+            priority
+        />
 
   return (
-        <div className={styles.heroContainer}>
+    <>
+          <TopNavs /> 
+            <div className={styles.heroContainer}>
             <div className={styles.heroImgContainer}>
                 {heroImage}
             </div>
@@ -61,7 +79,6 @@ export default function Hero() {
             <div className={styles.heroTitleBox}>
                 <h1 className={styles.heroTitle}>
                     Comic Closet
-                    <p>My Favorites: {favArray.length}</p>
                 </h1>
             </div>
             <div className={styles.headingContainer}>
@@ -74,5 +91,6 @@ export default function Hero() {
                 <p className={styles.latin}>Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
            {/* </div> */}
         </div>
+        </>
     )
 }
