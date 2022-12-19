@@ -1,32 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
-import Image from "next/image";
-import Detail from "./Detail";
 import styles from '../styles/ComicList.module.css';
 import Comic from './Comic'
-import Button from "./Button";
 import { AppContext } from "../state/PageWrapper"  
-import Favorites from "./Favorites";
 import CharacterDropdown from "./CharacterDropdown";
 import CreatorDropdown from "./CreatorDropdown";
-import { isTemplateExpression } from "typescript";
 import useFetch from "../hooks/useFetch";
-import FilteredComics from "./FilteredComics";
+import useFetchCreators from "../hooks/useFetchCreators";
+import useFetchCharacters from "../hooks/useFetchCharacters";
 
 
 export default function ComicList () {
 
     const { comics } = useFetch();
-    const comicsList = [
+    const comicsJSON = [
         {
             "id": 100213,
             "title": "Hulk Vs. Thor: Banner Of War  (Trade Paperback)",
             "issueNumber": 0,
             "publishDate": "2022-10-19T00:00:00-0400",
-            "characters": "Iron Man: 1009368",
+            "characters": ["Iron Man: 1009368"],
             "creators": [
                 {
                     "resourceURI": "http://gateway.marvel.com/v1/public/creators/12712",
-                    "name": "Storm: 1010979",
+                    "name": "Steve Ditko: 32",
                     "role": "writer"
                 },
                 {
@@ -62,7 +58,7 @@ export default function ComicList () {
             "title": "Avengers Forever (2021) #8",
             "issueNumber": 8,
             "publishDate": "2022-08-24T00:00:00-0400",
-            "characters": "Storm: 1010979",
+            "characters": ["Storm: 1010979"],
             "creators": [
                 {
                     "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
@@ -96,7 +92,7 @@ export default function ComicList () {
                 },
                 {
                     "resourceURI": "http://gateway.marvel.com/v1/public/creators/480",
-                    "name": "Cam Smith",
+                    "name": "Daniel Way",
                     "role": "inker"
                 }
             ],
@@ -107,7 +103,7 @@ export default function ComicList () {
             "title": "Avengers 1,000,000 BC (2022) #1",
             "issueNumber": 1,
             "publishDate": "2022-08-17T00:00:00-0400",
-            "characters": "Storm: 1010979",
+            "characters": ["Storm: 1010979"],
             "creators": [
                 {
                     "resourceURI": "http://gateway.marvel.com/v1/public/creators/11463",
@@ -136,7 +132,7 @@ export default function ComicList () {
                 },
                 {
                     "resourceURI": "http://gateway.marvel.com/v1/public/creators/442",
-                    "name": "Dean White",
+                    "name": "Jim Nausedas",
                     "role": "colorist"
                 },
                 {
@@ -148,83 +144,22 @@ export default function ComicList () {
             "thumbnail": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/62f3c6a4b53d9.jpg"
         },
     ]
-
-    const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useContext(AppContext);
-    const [ creatorArray, setCreatorArray ] = useState<string[]>([])
-    const [ characterArray, setCharacterArray ] = useState<string[]>([])
-    const [ combinedArray, setCombinedArray ] = useState<string[]>([])
-    const charName: string[] = characterFilter.length ? characterFilter.split(':') : [];
-
-    console.log('creators', creatorFilter)
-    console.log('characters', characterFilter)
-
-    useEffect(() => {
-        // console.log('comiclist character', characterFilter, 'comiclist creator', creatorFilter)
-        filterCharacters(filteredCharacterList)
-    }, [characterFilter])
-
-    useEffect(() => {
-        // console.log('comiclist character', characterFilter, 'comiclist creator', creatorFilter)
-        filterCreator(filteredCreatorList);
-    }, [creatorFilter])
-
-    let filteredCharacterList = comics.map((comic) => 
-        comic.characters.items.filter((item)=> item.name.includes(charName[0]))
-            .map(() => (
-                comic
-            ))
-    )
-    // console.log('filtered character list', filteredCharacterList)
-
-    let filteredCreatorList = comics.map((comic) => 
-        comic.creators.items.filter((creator)=> creator.name.includes(creatorFilter))
-            .map(() => (
-              comic
-            ))
-    )
-
-    let filteredCharacterArray: [] = [];
-    const filterCharacters = (filteredCharacterList: string | any[]) => {
-        for (let i = 0; i < filteredCharacterList.length; i++) {
-                if (filteredCharacterList[i].length) {
-                    // console.log('yes', filteredCharacterList[i][0])
-                    filteredCharacterArray.push(filteredCharacterList[i][0])
-                }
-        }
-        // console.log('filtered character array in function', filteredCharacterArray)
-        setCharacterArray(filteredCharacterArray)
-        setCombinedArray([...filteredCharacterArray, ...filteredCreatorArray])
-    }
-    // console.log('comicArray', comicArray)
-
-    
-    let filteredCreatorArray: [] = [];
-    const filterCreator = (filteredCreatorList: string | any[]) => {
-        if (filteredCreatorList.length) {
-            for (let i = 0; i < filteredCreatorList.length; i++) {
-                    if (filteredCreatorList[i].length) {
-                        // console.log('yes', filteredCreatorList[i][0])
-                        filteredCreatorArray.push(filteredCreatorList[i][0])
-                    }
-            }
-            // console.log('filtered array in function', filteredCreatorArray)
-            setCreatorArray(filteredCreatorArray)
-            setCombinedArray([...filteredCharacterArray, ...filteredCreatorArray])
-        }
-    }
-    // console.log('comicArray', comicArray)
+    const { creatorArray, setCreatorArray, characterArray, setCharacterArray, combinedArray, setCombinedArray } = useContext(AppContext);
+    const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useContext(AppContext); 
+    // const charName: string[] = characterFilter.length ? characterFilter.split(':') : [];
+    const { creatorFilteredComics } = useFetchCreators();
+    const { creatorFilteredCharacters } = useFetchCharacters();
+    console.log('fetched Creators', creatorFilteredComics)
+    console.log('fetched Characters', creatorFilteredCharacters)
    
-    console.log('comics', comics)
-    console.log('combined', combinedArray.length, combinedArray)
-    
-    let comicList = combinedArray.length ? combinedArray : comics;
-  return (
+    let comicList = creatorFilteredComics.length ? creatorFilteredComics : comics;
+
+    return (
         <div className={styles.comicsSection}>
              <div className={styles.filterBox}>
                 <CharacterDropdown  />
                 <CreatorDropdown  />
             </div>
-            {}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 50%), 1fr))', background: '#F8F8F2' }} className={styles.grid}>
                 {comicList && comicList.map((comic, index: number) => {
                     var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
@@ -233,7 +168,7 @@ export default function ComicList () {
                     let splitTitle = comic.title.split('(')[0];
                     return (
                         <>
-                        <Comic key={index} comic={comic} title={splitTitle} newDate={newDate} />
+                        <Comic key={comic.id} comic={comic} title={splitTitle} newDate={newDate}  />
                         </>
                     )
                     }

@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
@@ -26,26 +26,26 @@ type Props = {
 }
 
 export default function Button ({comic}: Props) {
-    const { favArray, setFavArray, toggleFavorite }  = useContext(AppContext);
+    const { favArray, setFavArray, toggleFavorite, isFavorite }  = useContext(AppContext);
     const ref = useRef();
-    
+
     const handleClick = () => {
-        if (favArray.length < 10) {
             let existing = favArray.includes(comic)
             if (existing) {
                 let newArray = favArray.filter(item => item !== comic)
                 setFavArray(newArray)
                 localStorage.setItem('favorites', JSON.stringify(newArray))
-            } else {
+                ref.current.style.backgroundColor = '#222222';
+                ref.current.style.border = 'solid #222222';
+            } else if (favArray.length < 10) {
                 favArray.push(comic)
                 let newArray = favArray;
                 setFavArray(newArray)
                 localStorage.setItem('favorites', JSON.stringify(newArray))
-                ref.current.classList.add('favorite')
-                console.log('class', ref.current.className)
+                ref.current.style.backgroundColor = '#C24868';
+                ref.current.style.border ='solid #C24868';
             }
             toggleFavorite()
-        }
     }
    
     return (

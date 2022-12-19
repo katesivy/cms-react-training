@@ -22,17 +22,21 @@ export default function Favorites () {
             const imgSrc: string = path + extenstion
             const image: any =
                 <Image className={styles.image}
-                loader={myLoader}
-                src={imgSrc}
-                alt={comic.id}
-                width={200}
-                height={300}
+                    loader={myLoader}
+                    src={imgSrc}
+                    alt={comic.id}
+                    width={70}
+                    height={90}
                 />
-            return (
-                <li key={index}>
-                    {comic.title}<br />
-                    Issue: {comic.issueNumber}
-                </li>
+            const splitTitle = comic.title.split('(')[0];
+                return (
+                <div key={index} className={styles.favDiv} >
+                    {image}
+                    <div className={styles.content}>
+                        {splitTitle}<br />
+                        Issue: {comic.issueNumber}
+                    </div>
+                </div>
             )
         }) : []
         setList(favs)
@@ -43,7 +47,7 @@ export default function Favorites () {
         <div className={styles.favBox}>
             <h2 className={styles.title}>Favorites</h2>
             <div className={styles.list}>
-                <ul>
+                <ul className={styles.ul}>
                 {list}
                 </ul>
             </div>

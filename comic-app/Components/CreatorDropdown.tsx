@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
+import useFetchCreators from "../hooks/useFetchCreators";
 
 type Props = {
     creatorFilter: String;
@@ -13,49 +14,44 @@ type Props = {
 // export default function CreatorDropdown ({ setcreatorFilter, creatorFilter}: Props) {
 export default function CreatorDropdown () {
     const creatorArray = [
-        'View All',
-        'Kate Leth: 12787',
-        'Brian Michael Bendis: 24',
-        'Stan Lee: 30',        
-        'Steve Ditko: 32',        
-        'Jack Kirby: 196',
-        'Storm: 1010979',
-        'Daniel Way',
-        'Mike Mayhew',
-        'Jim Nausedas'
+        {fullName:'View All', id: ''},
+        {fullName:'Kate Leth', id: '12787'},
+        {fullName:'Brian Michael Bendis', id: '24'},
+        {fullName:'Stan Lee', id: '30'},        
+        {fullName:'Steve Ditko', id: '32'},        
+        {fullName:'Jack Kirby', id: '196'},
+        {fullName:'Daniel Way', id: '123'},
+        {fullName:'Mike Mayhew', id: '1234'}
     ]
 
     const { creatorFilter, setCreatorFilter  } = useContext(AppContext);
     const [open, setOpen] = useState<boolean>(false);
 
-    // const handleOpen = () => {
-    //     setOpen(!open);
-    //   };
-
-    const handleClick = (e, item) => {
+    const handleClick = (e, creator) => {
+        console.log('clicked:', creator)
         e.preventDefault();
-        setOpen(false), 
-        setCreatorFilter(item) 
+        setOpen(prevState => !prevState), 
+        setCreatorFilter(creator) 
     }
-    // console.log('creator dropdown:', open, creatorFilter)
+    console.log('creator dropdown:', open, creatorFilter)
   
     return (
       <div>
-         <label>
+         <label className={styles.label}>
             Filter by: 
-        <button className={styles.dropdownButton} onClick={() => { setOpen(!open)}}>{ (creatorFilter == '' ) | (creatorFilter == 'View All') ? 'Creator' : creatorFilter }
+        <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (creatorFilter == '' ) | (creatorFilter == 'View All') ? 'Creator' : creatorFilter.fullName }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
         </button>
-            {open && <div>
-                {creatorArray.map(item => {
-                    if (creatorFilter == 'View All') {
-                        setCreatorFilter(''),  setOpen(false)
-                    } else {
+            {open && <div className={styles.dropdownDiv}>
+                {creatorArray.map((creator, index) => {
+                    // if (creatorFilter == 'View All') {
+                    //     setCreatorFilter([])
+                    // } else {
                        
                     return (
-                        <ul onClick={(e) => handleClick(e, item)}>{item}</ul>
+                        <ul key={index} onClick={(e) => handleClick(e, creator)}>{creator.fullName}</ul>
                         )
-                    }
+                    // }
                 })}
             </div> }
         </label>

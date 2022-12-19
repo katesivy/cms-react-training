@@ -1,14 +1,37 @@
 .favBox {
-    height: auto;
-    /* width: 20%; */
+    height: fit-content;
+    width: 30%;
     background-color: #222222;
     color: #F8F8F2;
-    transform: translateY(165px);
+    transform: translateY(200px);
     margin-left: 10px;
 }
 
 .title {
     color: white;
-    padding: 20px;
+    padding: 10px 0 0 30px;
     font-weight: 900;
 }
+
+.ul {
+    padding-left: 30px;
+}
+
+.list {
+    display: flex;
+    width: 100%;
+}
+
+.favDiv {
+    display: flex;
+    margin: 25px 0;
+}
+
+.content {
+    margin: 5px;
+}
+
+/* .comicImg {
+    width: 60%;
+    height: 100px;
+} */

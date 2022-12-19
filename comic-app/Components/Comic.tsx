@@ -30,6 +30,7 @@ type Props = {
   }
   title: string,
   newDate: string,
+  index: number
 }
 
 // { 
@@ -52,7 +53,7 @@ type LoaderProps = {
 
 
 
-export default function Comic ({comic, title, newDate}: Props) {
+export default function Comic ({comic, title, newDate, index}: Props) {
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
@@ -70,7 +71,7 @@ export default function Comic ({comic, title, newDate}: Props) {
       />
 
   return (
-    <div className={styles.comicDiv}>
+    <div className={styles.comicDiv} key={index}>
         <ul className={styles.ul}>
             {image}
             <Detail comic={comic} title={title} newDate={newDate}/>

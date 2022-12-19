@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import React, { useContext, useEffect } from 'react';
-import useFetch from '../hooks/useFetch';
-import Comic from '../Components/Comic'
-import FilteredComics from '../Components/FilteredComics';
+import React from 'react';
 import Hero from '../Components/Hero';
 import ComicList from '../Components/ComicList'
 import styles from '../styles/Home.module.css'
@@ -15,8 +12,6 @@ import Paginate from '../Components/Paginate'
 
 
 export default function Home() {
-
- 
 
   return (
     <>
