@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useContext } from 'react';
-import useFetch from '../hooks/useFetch';
+import useFetch from '../hooks/useFetchComics';
 import styles from '../styles/Hero.module.css';
 import Image from 'next/image';
 import heroPhoto2 from '../public/hero-photo@2x.png';

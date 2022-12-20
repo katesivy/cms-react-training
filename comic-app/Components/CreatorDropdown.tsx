@@ -33,25 +33,19 @@ export default function CreatorDropdown () {
         setOpen(prevState => !prevState), 
         setCreatorFilter(creator) 
     }
-    console.log('creator dropdown:', open, creatorFilter)
   
     return (
       <div>
          <label className={styles.label}>
             Filter by: 
-        <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (creatorFilter == '' ) | (creatorFilter == 'View All') ? 'Creator' : creatorFilter.fullName }
+        <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (creatorFilter.id == '' ) | (creatorFilter.id == undefined) ? 'Creator' : creatorFilter.fullName }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
         </button>
             {open && <div className={styles.dropdownDiv}>
                 {creatorArray.map((creator, index) => {
-                    // if (creatorFilter == 'View All') {
-                    //     setCreatorFilter([])
-                    // } else {
-                       
                     return (
                         <ul key={index} onClick={(e) => handleClick(e, creator)}>{creator.fullName}</ul>
                         )
-                    // }
                 })}
             </div> }
         </label>

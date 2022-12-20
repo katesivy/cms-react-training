@@ -29,6 +29,16 @@ export default function Button ({comic}: Props) {
     const { favArray, setFavArray, toggleFavorite, isFavorite }  = useContext(AppContext);
     const ref = useRef();
 
+    useEffect(() => {
+        let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
+        let favs = storageArray ? storageArray : []
+        // console.log('favs', favs)
+        
+            // console.log('comic', comic, 'ref', ref.current)
+            // ref.current.style.backgroundColor='#C24868';
+       
+    }, [])
+
     const handleClick = () => {
             let existing = favArray.includes(comic)
             if (existing) {

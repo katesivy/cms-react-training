@@ -4,6 +4,7 @@ import { useFavsArray } from '../hooks/useFavsArray';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 import { useDropdown } from '../hooks/useDropdown';
 import { useFilter } from '../hooks/useFilter';
+import { usePagination } from '../hooks/usePagination';
 
 export const AppContext = createContext({
 
@@ -14,6 +15,7 @@ export default function PageWrapper ({ children }: any) {
     const { favArray, setFavArray } = useFavsArray();
     const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useDropdown();
     const { creatorArray, setCreatorArray, characterArray, setCharacterArray, combinedArray, setCombinedArray } = useFilter();
+    const { total, setTotal, offset, setOffset } = usePagination();
 
     return (
         <AppContext.Provider
@@ -32,7 +34,11 @@ export default function PageWrapper ({ children }: any) {
                 characterArray: characterArray, 
                 setCharacterArray: setCharacterArray, 
                 combinedArray: combinedArray, 
-                setCombinedArray: setCombinedArray
+                setCombinedArray: setCombinedArray,
+                total: total,
+                setTotal: setTotal,
+                offset: offset,
+                setOffset: setOffset
             }}
         >
             {children}

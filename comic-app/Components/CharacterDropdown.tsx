@@ -5,13 +5,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 
-type Props = {
-    characterFilter: String;
-    setcharacterFilter(text:string): String | void;
-    // value?: string | ReadonlyArray<string> | number | undefined;
-}
 
-// export default function CharacterDropdown ({ setcharacterFilter, characterFilter}: Props) {
 export default function CharacterDropdown () {
     const characterArray = [
         {name:'View All', id: ''},
@@ -33,25 +27,19 @@ export default function CharacterDropdown () {
         setOpen(prevState => !prevState), 
         setCharacterFilter(character) 
     }
-    console.log('character dropdown', open, characterFilter)
   
     return (
       <div>
          <label className={styles.label}>
             Filter by:
-            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (characterFilter == '' ) | (characterFilter == 'View All') ? 'Character' : characterFilter.name }
+            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (characterFilter.id == '' ) | (characterFilter.id == undefined) ? 'Character' : characterFilter.name }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
             </button>
             {open && <div className={styles.dropdownDiv}>
                 {characterArray.map((character, index) => {
-                    // if (characterFilter == 'View All') {
-                    //     setCharacterFilter([]);  
-                    // } else {
-                       
                     return (
                         <ul key={index} onClick={(e) => handleClick(e, character)}>{character.name}</ul>
                         )
-                    // }
                 })}
             </div>}
         </label>

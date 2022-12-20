@@ -11,9 +11,7 @@ export default function Favorites () {
     const myLoader = ({ src, width, quality }: LoaderProps) => {
         return `${src}?w=${width}&q=${quality || 75}`
       }
-    
-      
-      
+
       useEffect(() => {
         let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
         let favs = storageArray ? storageArray.map((comic, index) => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
     import axios from 'axios';
     import ReactPaginate from 'react-paginate';
     import Router, { withRouter } from 'next/router'
-    import useFetch from '../hooks/useFetch';
+    import useFetch from '../hooks/useFetchComics';
 
     
     
