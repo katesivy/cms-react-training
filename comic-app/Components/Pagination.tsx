@@ -1,5 +1,9 @@
 import React, {useContext, useReducer} from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
+import styles from '../styles/Pagination.module.css'
 
 const initialState = {count: 0}
     
@@ -44,10 +48,16 @@ export default function Pagination () {
 
     const Counter = () => {
         return (
-            <div>
+            <div className={styles.paginationDiv}>
+                
+
+                <button className={styles.iconContainer} onClick={() => dispatch({type: 'subtract'})}>
+                    <FontAwesomeIcon className={styles.icon} icon={faAngleLeft} />
+                </button>
                 <div>{state.count}-{state.count + 15} of {total}</div>
-                <button onClick={() => dispatch({type: 'subtract'})}>Prev</button>
-                <button onClick={() => dispatch({type: 'add'})}>Next</button>
+                <button className={styles.iconContainer} onClick={() => dispatch({type: 'add'})}>
+                    <FontAwesomeIcon className={styles.icon} icon={faAngleRight} />
+                </button>
                 <button onClick={() => {dispatch({type: 'reset'}), setOffset(state.count)}}>Reset</button>
             </div>
         )

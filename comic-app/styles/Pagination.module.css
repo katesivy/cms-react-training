@@ -1,0 +1,24 @@
+.paginationDiv {
+    display: flex;
+    margin: 0 auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.iconContainer {
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    color: #F8F8F2;
+    opacity: 1;
+    background-color: #222222;
+    border-radius: 9999px;
+    border: solid #222222;
+}
+
+.icon {
+    width: 9px;
+    height: 18px;
+}
