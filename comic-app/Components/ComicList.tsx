@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from '../styles/ComicList.module.css';
 import Comic from './Comic'
 import { AppContext } from "../state/PageWrapper"  
@@ -11,24 +11,16 @@ import Pagination from "./Pagination";
 
 
 export default function ComicList () {
-
+    const comicRef = useRef();
     const { comics } = useFetchComics();
     const { creatorFilteredComics } = useFetchCreators();
     const { characterFilteredComics } = useFetchCharacters();
-    console.log('fetched Creators', creatorFilteredComics)
-    console.log('fetched Characters', characterFilteredComics)
+    // console.log('fetched Creators', creatorFilteredComics)
+    // console.log('fetched Characters', characterFilteredComics)
     let combinedArray = [...creatorFilteredComics, ...characterFilteredComics]
     // console.log('combined', combinedArray)
 
-    // let testArray = [
-    //     {id: 1, name: 'kate'}, 
-    //    { id: 1, name: 'rob'}, 
-    //    { id: 2, name: 'michael'}, 
-    //    { id: 3, name: 'william'}, 
-    //     {id: 4, name: 'eli'}, 
-    //    { id: 2, name: 'tbd'},
-    // ]
-      
+
     let ids = combinedArray.map((comic => {
         return comic.id
     }))
@@ -45,7 +37,21 @@ export default function ComicList () {
         }
     }))
     // console.log('comicArray', comicArray)
-
+    // useEffect(() => {
+        // let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
+        // let favs = storageArray ? storageArray : []
+        // console.log('favs', favs)
+       
+        // favs.map((comic => {
+        //     console.log('comic useEffect status', '-', comic.favStatus, '-', comic.title)
+        //     comic.favStatus = true;
+        //     if (comic.favStatus == true) {
+        //       console.log('status is true', comic.title)
+        //         // comicRef.current.className = 'favoriteComic'
+        //       console.log('ref', comicRef)
+        //     }
+        // }))
+// }, [])
    
     let comicList = creatorFilteredComics.length | characterFilteredComics.length ? comicArray : comics;
 
@@ -61,9 +67,11 @@ export default function ComicList () {
                     var d = new Date(comic.dates[0].date)
                     var newDate = month + ' ' + d.getDate() + ', ' + d.getFullYear()
                     let splitTitle = comic.title.split('(')[0];
+                    
                     return (
                         <>
-                        <Comic key={comic.id} comic={comic} title={splitTitle} newDate={newDate}  />
+                        
+                        <Comic key={index} comic={comic} title={splitTitle} newDate={newDate}  />
                         </>
                     )
                     }

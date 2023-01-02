@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Detail from "./Detail";
 import styles from '../styles/Comic.module.css'
@@ -33,17 +33,6 @@ type Props = {
   index: number
 }
 
-// { 
-//   dates?: any; 
-//   title: any; 
-//   id?: string; 
-//   issueNumber?: number; 
-//   creators?: string[] | undefined; 
-//   thumbnail?: { path: string; extension: string; id?: number | undefined; }; 
-//   characters?: {}; 
-//   isFavorite?: boolean; 
-// }
-
 type LoaderProps = {
   src: string,
   width: number | string,
@@ -53,7 +42,8 @@ type LoaderProps = {
 
 
 
-export default function Comic ({comic, title, newDate, index}: Props) {
+export default function Comic ({comic, title, newDate, index, comicRef}: Props) {
+  // console.log('ref', comicRef)
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
@@ -70,12 +60,15 @@ export default function Comic ({comic, title, newDate, index}: Props) {
         height={300}
       />
 
+  const { favArray, setFavArray, toggleFavorite, isFavorite, favStatus, setFavStatus }  = useContext(AppContext);
+    
+
   return (
-    <div className={styles.comicDiv} key={index}>
+    <div className={styles.comicDiv} key={index} >
         <ul className={styles.ul}>
             {image}
+            <Button comic={comic}  />
             <Detail comic={comic} title={title} newDate={newDate}/>
-            <Button comic={comic} />
         </ul>
     </div>
   )

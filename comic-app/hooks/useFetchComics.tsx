@@ -38,7 +38,6 @@ interface Comics {
 export default function useFetchComics () {
     const [comics, setComics] = useState<Comics>([])
     const { total, setTotal, offset } = useContext(AppContext);
-    console.log('offset in useFetch', offset)
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
@@ -49,14 +48,12 @@ export default function useFetchComics () {
     const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
     
     const [isLoading, setLoading] = useState<boolean>(false)
-    const startLoading = () => setLoading(true);
-    const stopLoading = () => setLoading(false);
 
     const getComics = async () => {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log('comic data', data)
+        console.log('comic data', data.data.results)
         setTotal(data.data.total)
         setComics(data.data.results)
         setLoading(false)
@@ -70,9 +67,7 @@ export default function useFetchComics () {
       }, [offset])
 
     return (
-    
       {comics}
-
     )
 }
 

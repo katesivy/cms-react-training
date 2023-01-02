@@ -9,7 +9,7 @@ interface Characters {
 
 export default function useFetchCharacters () {
     const { characterFilter } = useContext(AppContext);
-    console.log('charfiter', characterFilter.id)
+    // console.log('charfiter', characterFilter.id)
     const [characterFilteredComics, setCharacterFilteredComics] = useState<Characters>([])
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY

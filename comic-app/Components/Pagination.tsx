@@ -6,11 +6,10 @@ import { AppContext } from "../state/PageWrapper";
 import styles from '../styles/Pagination.module.css'
 
 const initialState = {count: 0}
-    
 
 
 export default function Pagination () {
-    const { total, offset, setOffset } = useContext(AppContext);
+    const { total, setOffset } = useContext(AppContext);
 
     function reducer(state, action) {
         switch (action.type) {
@@ -22,7 +21,6 @@ export default function Pagination () {
                 } else {
                     return {
                         count: state.count + 15,
-                        
                     }
                 }
             case 'subtract': 
@@ -43,14 +41,12 @@ export default function Pagination () {
                 throw new Error();
         }
     }
-    console.log('offset in pagination', offset)
+    // console.log('offset in pagination', offset)
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const Counter = () => {
         return (
             <div className={styles.paginationDiv}>
-                
-
                 <button className={styles.iconContainer} onClick={() => dispatch({type: 'subtract'})}>
                     <FontAwesomeIcon className={styles.icon} icon={faAngleLeft} />
                 </button>

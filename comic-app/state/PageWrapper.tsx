@@ -11,7 +11,7 @@ export const AppContext = createContext({
 });
 
 export default function PageWrapper ({ children }: any) {
-    const { isFavorite, setIsFavorite, toggleFavorite, } = useToggleFavorites();  
+    const { isFavorite, setIsFavorite, toggleFavorite, favStatus, setFavStatus, storageFavs, setStorageFavs } = useToggleFavorites();  
     const { favArray, setFavArray } = useFavsArray();
     const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useDropdown();
     const { creatorArray, setCreatorArray, characterArray, setCharacterArray, combinedArray, setCombinedArray } = useFilter();
@@ -23,6 +23,10 @@ export default function PageWrapper ({ children }: any) {
                 isFavorite: isFavorite,
                 setIsFavorite: setIsFavorite,
                 toggleFavorite: toggleFavorite,
+                favStatus: favStatus,
+                setFavStatus: setFavStatus,
+                storageFavs: storageFavs,
+                setStorageFavs: setStorageFavs,
                 favArray: favArray, 
                 setFavArray: setFavArray,
                 characterFilter: characterFilter,

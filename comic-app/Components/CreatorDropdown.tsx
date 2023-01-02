@@ -4,14 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
-import useFetchCreators from "../hooks/useFetchCreators";
 
-type Props = {
-    creatorFilter: String;
-    setcreatorFilter(text:string): String | void;
-}
-
-// export default function CreatorDropdown ({ setcreatorFilter, creatorFilter}: Props) {
 export default function CreatorDropdown () {
     const creatorArray = [
         {fullName:'View All', id: ''},
@@ -28,7 +21,7 @@ export default function CreatorDropdown () {
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = (e, creator) => {
-        console.log('clicked:', creator)
+        // console.log('clicked:', creator)
         e.preventDefault();
         setOpen(prevState => !prevState), 
         setCreatorFilter(creator) 
