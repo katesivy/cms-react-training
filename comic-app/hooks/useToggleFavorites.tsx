@@ -3,7 +3,7 @@ import useFetch from "./useFetchComics";
 
 export const useToggleFavorites = () => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
-    const [favStatus, setFavStatus] = useState<boolean>(false);
+    // const [favStatus, setFavStatus] = useState<boolean>(false);
     const [storageFavs, setStorageFavs] = useState();
     
     const toggleFavorite = () => {
@@ -13,5 +13,5 @@ export const useToggleFavorites = () => {
 
 
     
-    return {isFavorite, setIsFavorite, toggleFavorite, favStatus, setFavStatus, storageFavs, setStorageFavs }
+    return {isFavorite, setIsFavorite, toggleFavorite,  storageFavs, setStorageFavs }
 }

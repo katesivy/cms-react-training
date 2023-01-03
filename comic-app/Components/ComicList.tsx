@@ -15,6 +15,9 @@ export default function ComicList () {
     const { comics } = useFetchComics();
     const { creatorFilteredComics } = useFetchCreators();
     const { characterFilteredComics } = useFetchCharacters();
+    // const [favStatus, setFavStatus] = useState(false);
+    const { favArray, setFavArray, toggleFavorite, isFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
+    const buttonRef = useRef();
     // console.log('fetched Creators', creatorFilteredComics)
     // console.log('fetched Characters', characterFilteredComics)
     let combinedArray = [...creatorFilteredComics, ...characterFilteredComics]
@@ -36,23 +39,8 @@ export default function ComicList () {
             }
         }
     }))
-    // console.log('comicArray', comicArray)
-    // useEffect(() => {
-        // let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
-        // let favs = storageArray ? storageArray : []
-        // console.log('favs', favs)
-       
-        // favs.map((comic => {
-        //     console.log('comic useEffect status', '-', comic.favStatus, '-', comic.title)
-        //     comic.favStatus = true;
-        //     if (comic.favStatus == true) {
-        //       console.log('status is true', comic.title)
-        //         // comicRef.current.className = 'favoriteComic'
-        //       console.log('ref', comicRef)
-        //     }
-        // }))
-// }, [])
-   
+
+
     let comicList = creatorFilteredComics.length | characterFilteredComics.length ? comicArray : comics;
 
     return (
@@ -67,10 +55,14 @@ export default function ComicList () {
                     var d = new Date(comic.dates[0].date)
                     var newDate = month + ' ' + d.getDate() + ', ' + d.getFullYear()
                     let splitTitle = comic.title.split('(')[0];
-                    
+                    comic.favStatus = false;
+                    const result = storageFavs.find(({ id }) => id === comic.id);
+                    if (result) {
+                        comic.favStatus = true;
+                    }
+
                     return (
                         <>
-                        
                         <Comic key={index} comic={comic} title={splitTitle} newDate={newDate}  />
                         </>
                     )

@@ -42,8 +42,7 @@ type LoaderProps = {
 
 
 
-export default function Comic ({comic, title, newDate, index, comicRef}: Props) {
-  // console.log('ref', comicRef)
+export default function Comic ({comic, title, newDate, index}: Props) {
   const myLoader = ({ src, width, quality }: LoaderProps) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
@@ -59,9 +58,6 @@ export default function Comic ({comic, title, newDate, index, comicRef}: Props) 
         width={200}
         height={300}
       />
-
-  const { favArray, setFavArray, toggleFavorite, isFavorite, favStatus, setFavStatus }  = useContext(AppContext);
-    
 
   return (
     <div className={styles.comicDiv} key={index} >
