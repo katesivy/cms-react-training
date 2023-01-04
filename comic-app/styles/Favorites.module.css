@@ -31,7 +31,22 @@
     margin: 5px;
 }
 
-/* .comicImg {
-    width: 60%;
-    height: 100px;
-} */
+.xBtnContainer {
+    display: flex;
+}
+
+.xBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    transform: translate(15px, 15px);
+    padding: 2px;
+    border-radius: 4em;
+    border: solid #F8F8F2;
+    color: #C24868;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+}

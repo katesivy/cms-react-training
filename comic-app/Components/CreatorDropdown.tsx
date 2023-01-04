@@ -21,7 +21,6 @@ export default function CreatorDropdown () {
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = (e, creator) => {
-        // console.log('clicked:', creator)
         e.preventDefault();
         setOpen(prevState => !prevState), 
         setCreatorFilter(creator) 

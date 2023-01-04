@@ -42,7 +42,8 @@ export default function PageWrapper ({ children }: any) {
                 total: total,
                 setTotal: setTotal,
                 offset: offset,
-                setOffset: setOffset
+                setOffset: setOffset,
+                // setAllComics: setAllComics
             }}
         >
             {children}

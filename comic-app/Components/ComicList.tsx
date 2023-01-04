@@ -8,40 +8,36 @@ import useFetchComics from "../hooks/useFetchComics";
 import useFetchCreators from "../hooks/useFetchCreators";
 import useFetchCharacters from "../hooks/useFetchCharacters";
 import Pagination from "./Pagination";
+import useFetchBoth from "../hooks/useFetchBoth";
 
 
 export default function ComicList () {
-    const comicRef = useRef();
-    const { comics } = useFetchComics();
-    const { creatorFilteredComics } = useFetchCreators();
-    const { characterFilteredComics } = useFetchCharacters();
-    // const [favStatus, setFavStatus] = useState(false);
-    const { favArray, setFavArray, toggleFavorite, isFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
-    const buttonRef = useRef();
-    // console.log('fetched Creators', creatorFilteredComics)
-    // console.log('fetched Characters', characterFilteredComics)
-    let combinedArray = [...creatorFilteredComics, ...characterFilteredComics]
-    // console.log('combined', combinedArray)
+    const { comics, totalComics } = useFetchComics();
+    const { creatorFilteredComics, totalCreators } = useFetchCreators();
+    const { characterFilteredComics, totalChars } = useFetchCharacters();
+    const { bothSelectedComics, bothTotal } = useFetchBoth();
+    const [comicList, setComicList] = useState()
+    const { storageFavs, setTotal }  = useContext(AppContext);
 
-
-    let ids = combinedArray.map((comic => {
-        return comic.id
-    }))
-    let unique = [...new Set(ids)];
-      
-    // console.log('unique', unique);
-
-    let comicArray = [];
-    combinedArray.map((comic => {
-        for (let i=0; i< unique.length; i++) {
-            if (comic.id === unique[i]) {
-                comicArray.push(comic)
-            }
+    useEffect(() => {
+        if (bothSelectedComics.length) {
+            console.log('both')
+            setComicList(bothSelectedComics)
+            setTotal(bothTotal)
+        } else if (creatorFilteredComics.length && !characterFilteredComics.length) {
+            console.log('creator only')
+            setComicList(creatorFilteredComics)
+            setTotal(totalCreators)
+        } else if (characterFilteredComics.length && !creatorFilteredComics.length) {
+            console.log('char only')
+            setComicList(characterFilteredComics)
+            setTotal(totalChars)
+        } else {
+            console.log('comics only')
+            setComicList(comics)
+            setTotal(totalComics)
         }
-    }))
-
-
-    let comicList = creatorFilteredComics.length | characterFilteredComics.length ? comicArray : comics;
+    }, [comics, creatorFilteredComics, characterFilteredComics, bothSelectedComics])
 
     return (
         <div className={styles.comicsSection}>

@@ -10,7 +10,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function TopNavs () {
-    const { favArray }  = useContext(AppContext);
+    const { storageFavs }  = useContext(AppContext);
     const myLoader = ({ src, width, quality }: LoaderProps) => {
         return `${src}?w=${width}&q=${quality || 75}`
       }
@@ -30,7 +30,7 @@ export default function TopNavs () {
                 <h5 className={styles.homeNav}>Home</h5>
                 <h5 className={styles.shopNav}>Shop</h5>
                 <div className={styles.boltNav}><FontAwesomeIcon className={styles.icon} icon={faBolt} /></div>
-                <h5 className={styles.favNav}>My Favorites: ({favArray.length})</h5>
+                <h5 className={styles.favNav}>My Favorites: ({storageFavs ? storageFavs.length : 0})</h5>
             </div>
         </div>
         </>

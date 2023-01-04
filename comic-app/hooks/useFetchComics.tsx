@@ -1,8 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import ReactPaginate from 'react-paginate';
-import Router, { withRouter } from 'next/router'
-import { setConstantValue } from 'typescript';
 import { AppContext } from '../state/PageWrapper';
 
 type Thumbnail = {
@@ -37,7 +33,8 @@ interface Comics {
 
 export default function useFetchComics () {
     const [comics, setComics] = useState<Comics>([])
-    const { total, setTotal, offset } = useContext(AppContext);
+    const { total, setTotal, offset} = useContext(AppContext);
+    const [totalComics, setTotalComics] = useState<number>(0)
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
@@ -46,7 +43,7 @@ export default function useFetchComics () {
     const auth: string = `${timestamp}${privateKey}${publicKey}`; 
     var hash: string = crypto.createHash('md5').update(auth).digest('hex');
     const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
-    
+ 
     const [isLoading, setLoading] = useState<boolean>(false)
 
     const getComics = async () => {
@@ -54,7 +51,7 @@ export default function useFetchComics () {
         const res = await fetch(url);
         const data = await res.json();
         console.log('comic data', data.data.results)
-        setTotal(data.data.total)
+        setTotalComics(data.data.total)
         setComics(data.data.results)
         setLoading(false)
       } catch (e) {
@@ -64,10 +61,10 @@ export default function useFetchComics () {
 
     useEffect(() => {
       getComics()
-      }, [offset])
+    }, [offset])
 
     return (
-      {comics}
+      {comics, totalComics}
     )
 }
 

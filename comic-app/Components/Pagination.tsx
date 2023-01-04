@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from "react";
+import React, {useContext, useEffect, useReducer} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -9,12 +9,12 @@ const initialState = {count: 0}
 
 
 export default function Pagination () {
-    const { total, setOffset } = useContext(AppContext);
+    const { total, setTotal, offset, setOffset, characterFilter, creatorFilter, } = useContext(AppContext);
 
     function reducer(state, action) {
+        console.log('statecount', state.count, 'pagination total', total)
         switch (action.type) {
             case 'add': 
-                console.log('statecount', state.count)
                 setOffset(state.count + 15)
                 if (state.count == total) {
                     return {count: state.count}
@@ -41,7 +41,7 @@ export default function Pagination () {
                 throw new Error();
         }
     }
-    // console.log('offset in pagination', offset)
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const Counter = () => {

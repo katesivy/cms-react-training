@@ -5,48 +5,33 @@ import Image from "next/image";
 
 
 export default function Favorites () {
-    const { favArray, setFavArray, isFavorite, toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
+    const { isFavorite, toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
     const [list, setList] = useState([]);
 
     const myLoader = ({ src, width, quality }: LoaderProps) => {
         return `${src}?w=${width}&q=${quality || 75}`
       }
 
-    
-    const removeFavorite = (storageArray) => {
-   
-        // let favs = storageFavs ? storageFavs : []
-        // setFavArray(favs)
-        // console.log('remove this', '-', comic.favStatus, '-', comic.title)
-        console.log('storageFavs', storageFavs, 'favArray', favArray, 'storageArray', storageArray)
-        // comic.favStatus = false;
-        // let existingComic = storageFavs.includes(comic) 
-        // console.log('existing', existingComic)
-
-        // const result = storageFavs.find(({ id }) => id === comic.id);
-        // console.log('result', result);
-
-        // const index = storageFavs.findIndex(e => e.id === comic.id);
-        //     if (index > -1) {
-        //         console.log('index found', comic)
-        //     } else {
-        //         console.log('index not found')
-        //     }
-        // // console.log('index', index)
- 
-        // if ((result) ) {
-        //     console.log('in existing storageFavs', comic)
-        //     storageFavs.splice(index, 1)
-        //     localStorage.setItem('favorites', JSON.stringify(storageFavs))
-        // }
+    const removeFavorite = (comic, storageArray) => {
+        const result = storageFavs ? storageFavs.find(({ id }) => id === comic.id) : storageArray.find(({ id }) => id === comic.id);
+        const index = storageFavs ?  storageFavs.findIndex(e => e.id === comic.id) : storageArray.findIndex(e => e.id === comic.id);
+        if ((result) ) {
+            if (storageFavs) {
+                storageFavs.splice(index, 1) 
+                setStorageFavs(storageFavs)
+                localStorage.setItem('favorites', JSON.stringify(storageFavs))
+             } else {
+                storageArray.splice(index, 1)
+                setStorageFavs(storageArray)
+                localStorage.setItem('favorites', JSON.stringify(storageArray))
+             }
+        }
         toggleFavorite()
     }
     
     useEffect(() => {
         let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
         setStorageFavs(storageArray)
-        setFavArray(storageArray)
-        // console.log('storageArray', storageArray , 'storage', storageFavs)
         let favs = storageArray ? storageArray.map((comic, index) => {
             const path: string = comic.thumbnail.path + '.'
             const extenstion: string = comic.thumbnail.extension 
@@ -63,12 +48,14 @@ export default function Favorites () {
             
             return (
                 <>
-                <button onClick={()=> removeFavorite()}>X</button>
-                <div key={index} className={styles.favDiv} >
-                    {image}
-                    <div className={styles.content}>
-                        {splitTitle}<br />
-                        Issue: {comic.issueNumber}
+                <div className={styles.xBtnContainer}>
+                    <button className={styles.xBtn} onClick={()=> removeFavorite(comic, storageArray)}>X</button>
+                    <div key={index} className={styles.favDiv} >
+                        {image}
+                        <div className={styles.content}>
+                            {splitTitle}<br />
+                            Issue: {comic.issueNumber}
+                        </div>
                     </div>
                 </div>
                 </>
@@ -76,9 +63,7 @@ export default function Favorites () {
         }) : []
         setList(favs)
     }, [isFavorite])
-    
-    // console.log('storage', storageFavs)
-   
+
     return (
         <div className={styles.favBox}>
             <h2 className={styles.title}>Favorites</h2>
