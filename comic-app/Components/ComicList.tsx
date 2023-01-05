@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, Dispatch } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from '../styles/ComicList.module.css';
 import Comic from './Comic'
 import { AppContext } from "../state/PageWrapper"  

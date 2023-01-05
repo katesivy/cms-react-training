@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/Button.module.css'
 import { AppContext } from '../state/PageWrapper'
-import { Root } from './Interfaces'
+import { Root, Favs } from './Interfaces'
 
 
 type Props = {
@@ -15,9 +15,8 @@ export default function Button ({comic }: Props) {
     const { toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
 
     useEffect(() => {
-        let storageArray: {}[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : [];
-        console.log('storageArray', storageArray)
-        let favs = storageArray ? storageArray : []
+        let storageArray: Favs[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : [];
+        let favs: Favs[] = storageArray ? storageArray : []
         setStorageFavs(favs)
     }, [])
 
@@ -32,7 +31,7 @@ export default function Button ({comic }: Props) {
         } else if (storageFavs.length < 10) {
             comic.favStatus = true;
             storageFavs.push(comic)
-            let newArray: {}[] = storageFavs;
+            let newArray: Favs[] = storageFavs;
             setStorageFavs(newArray)
             localStorage.setItem('favorites', JSON.stringify(newArray))
         } else if (storageFavs.length === 10) {

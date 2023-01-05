@@ -1,13 +1,5 @@
 import {useState} from "react";
-
-type Character = {
-    id: string,
-    name: string
-}
-type Creator = {
-    id: string,
-    fullName: string
-}
+import { Creator, Character } from "../Components/Interfaces";
 
 export const useDropdown = () => {
     const [characterFilter, setCharacterFilter] = useState<Character>({ name: "", id: "" });

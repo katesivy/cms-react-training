@@ -7,7 +7,11 @@ import logo2 from '../public/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt } from '@fortawesome/free-solid-svg-icons';
 
-
+type LoaderProps = {
+    src: string,
+    width: number | string,
+    quality?: number | string | undefined, 
+}
 
 export default function TopNavs () {
     const { storageFavs }  = useContext(AppContext);

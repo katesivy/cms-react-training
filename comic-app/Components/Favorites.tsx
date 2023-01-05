@@ -1,4 +1,4 @@
-import React, {ReactNode, useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from '../styles/Favorites.module.css';
 import { AppContext } from "../state/PageWrapper";
 import Image from "next/image";

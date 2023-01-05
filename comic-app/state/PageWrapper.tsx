@@ -2,30 +2,21 @@ import React, { createContext, useContext } from 'react';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 import { useDropdown } from '../hooks/useDropdown';
 import { usePagination } from '../hooks/usePagination';
-import { Root } from '../Components/Interfaces';
+import {  Character, Creator, Favs } from '../Components/Interfaces';
 
 type SetStateAction<S> = S | ((prevState: S) => S);
 
 type Dispatch<A> = (action: A) => void;
 
-type Character = {
-    id: string,
-    name: string
-}
-type Creator = {
-    id: string,
-    fullName: string
-}
-
 type InitialValues = {
     isFavorite: boolean, 
-    storageFavs: Root[],
+    storageFavs: Favs[],
     characterFilter: Character,
     creatorFilter: Creator,
     total: number,
     offset: number,
     toggleFavorite: () => void,
-    setStorageFavs: Dispatch<SetStateAction<Root[]>>,
+    setStorageFavs: Dispatch<SetStateAction<Favs[]>>,
     setCharacterFilter: Dispatch<SetStateAction<Character>>,
     setCreatorFilter: Dispatch<SetStateAction<Creator>>,
     setTotal:  Dispatch<SetStateAction<number>>,

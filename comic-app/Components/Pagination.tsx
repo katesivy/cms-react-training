@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useReducer} from "react";
+import React, {useContext, useReducer} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
@@ -57,7 +57,7 @@ export default function Pagination () {
                 <button onClick={() => {dispatch({type: 'reset'}), setOffset(state.count)}}>Reset</button>
             </div>
         )
-       }
+    }
 
     return (
         <>

@@ -31,76 +31,90 @@ export interface Root {
     events: Events
     favStatus: boolean
     length: number
-  } 
+} 
 
-  export interface Url {
+export interface Url {
     type: string
     url: string
-  }
+}
   
-  export interface Series {
+export interface Series {
     resourceURI: string
     name: string
-  }
+}
   
-  export interface Variant {
+export interface Variant {
     resourceURI: string
     name: string
-  }
+}
   
-  export interface Date {
+export interface Date {
     type: string
     date: string
-  }
+}
   
-  export interface Price {
+export interface Price {
     type: string
     price: number
-  }
+}
   
-  export interface Thumbnail {
+export interface Thumbnail {
     path: string
     extension: string
-  }
+}
   
-  export interface Creators {
+export interface Creators {
     available: number
     collectionURI: string
     items: Item[]
     returned: number
     id: number
-  }
+}
   
-  export interface Item {
+export interface Item {
     resourceURI: string
     name: string
     role: string
-  }
+}
   
-  export interface Characters {
+export interface Characters {
     available: number
     collectionURI: string
     items: any[]
     returned: number
     id: number
-  }
+}
   
-  export interface Stories {
+export interface Stories {
     available: number
     collectionURI: string
     items: Item2[]
     returned: number
-  }
+}
   
-  export interface Item2 {
+export interface Item2 {
     resourceURI: string
     name: string
     type: string
-  }
+}
   
-  export interface Events {
+export interface Events {
     available: number
     collectionURI: string
     items: any[]
     returned: number
-  }
+}
+
+export interface Character {
+    id: string,
+    name: string
+}
+
+export interface Creator {
+    id: string,
+    fullName: string
+}
+
+export interface Favs {
+    id: string
+}
