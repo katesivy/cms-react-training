@@ -1,19 +1,26 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {ReactNode, useContext, useEffect, useState} from "react";
 import styles from '../styles/Favorites.module.css';
 import { AppContext } from "../state/PageWrapper";
 import Image from "next/image";
+import { Root } from "./Interfaces";
 
+type LoaderProps = {
+    src: string,
+    width: number | string,
+    quality?: number | string | undefined, 
+    alt?: number,
+}
 
 export default function Favorites () {
     const { isFavorite, toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
-    const [list, setList] = useState([]);
+    const [list, setList] = useState<JSX.Element[] | undefined>([]);
 
     const myLoader = ({ src, width, quality }: LoaderProps) => {
         return `${src}?w=${width}&q=${quality || 75}`
       }
 
-    const removeFavorite = (comic, storageArray) => {
-        const result = storageFavs ? storageFavs.find(({ id }) => id === comic.id) : storageArray.find(({ id }) => id === comic.id);
+    const removeFavorite = (comic: Root, storageArray: any[]) => {
+        const result = storageFavs ? storageFavs.find(({ id }: any) => id === comic.id) : storageArray.find(({ id }) => id === comic.id);
         const index = storageFavs ?  storageFavs.findIndex(e => e.id === comic.id) : storageArray.findIndex(e => e.id === comic.id);
         if ((result) ) {
             if (storageFavs) {
@@ -30,10 +37,10 @@ export default function Favorites () {
     }
     
     useEffect(() => {
-        let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
+        let storageArray: Root[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : []
         setStorageFavs(storageArray)
-        let favs = storageArray ? storageArray.map((comic, index) => {
-            const path: string = comic.thumbnail.path + '.'
+        let favs: JSX.Element[] = storageArray ? storageArray.map((comic, index: number) => {
+            const path: {} = comic.thumbnail.path + '.'
             const extenstion: string = comic.thumbnail.extension 
             const imgSrc: string = path + extenstion
             const image: any =

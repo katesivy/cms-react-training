@@ -5,11 +5,6 @@ import ComicList from '../Components/ComicList'
 import styles from '../styles/Home.module.css'
 import Favorites from '../Components/Favorites';
 import PageWrapper from '../state/PageWrapper'
-import axios from 'axios';
-import ReactPaginate from 'react-paginate';
-import Router, { withRouter } from 'next/router';
-import Paginate from '../Components/Paginate'
-
 
 export default function Home() {
 

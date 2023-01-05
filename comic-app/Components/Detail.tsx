@@ -1,37 +1,9 @@
-import Button from "./Button"
-import styles from '../styles/Detail.module.css'
 import React from "react"
-
-type Thumbnail = {
-    path: string,
-    extension: string,
-    id? : number
-}
-
-type Items = {
-    resourceURI: string;
-    name: string;
-    role: string;
-}
-
-type CreatorsObj = {
-    available: number;
-    collectionURI: string;
-    items?: Items;
-    returned: number;
-}
+import styles from '../styles/Detail.module.css'
+import { Root } from "./Interfaces"
 
 type Props = {
-    comic: {
-        isFavorite: boolean,
-        id: string; 
-        title: string;
-        issueNumber: number; 
-        creators: CreatorsObj; 
-        thumbnail: Thumbnail; 
-        characters: {};
-    }
-    isFavorite: boolean,
+    comic: Root,
     title: string,
     newDate: string,
 }

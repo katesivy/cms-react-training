@@ -22,7 +22,7 @@ export default function CharacterDropdown () {
     const {characterFilter, setCharacterFilter } = useContext(AppContext);
     const [open, setOpen] = useState<boolean>(false);
 
-    const handleClick = (e, character) => {
+    const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, character: { name: string; id: string; }) => {
         e.preventDefault();
         setOpen(prevState => !prevState), 
         setCharacterFilter(character) 
@@ -32,7 +32,7 @@ export default function CharacterDropdown () {
       <div>
          <label className={styles.label}>
             Filter by:
-            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (characterFilter.id == '' ) | (characterFilter.id == undefined) ? 'Character' : characterFilter.name }
+            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (characterFilter.id == '' ) || (characterFilter.id == undefined) ? 'Character' : characterFilter.name }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
             </button>
             {open && <div className={styles.dropdownDiv}>

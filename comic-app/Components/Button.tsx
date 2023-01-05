@@ -4,40 +4,26 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/Button.module.css'
 import { AppContext } from '../state/PageWrapper'
+import { Root } from './Interfaces'
 
-type Thumbnail = {
-    path: string,
-    extension: string,
-    id? : number
-}
 
 type Props = {
-    comic: {
-      favStatus: boolean
-      isFavorite: boolean,
-      id: string; 
-      title: string;
-      issueNumber: number; 
-      creators: string[] | undefined; 
-      thumbnail: Thumbnail; 
-      characters: {};
-      dates?: string | undefined;
-    }
-    comicClass: string
+    comic: Root
 }
 
 export default function Button ({comic }: Props) {
-    const { toggleFavorite, isFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
+    const { toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
 
     useEffect(() => {
-        let storageArray = localStorage ? JSON.parse(localStorage.getItem('favorites')) : []
+        let storageArray: {}[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : [];
+        console.log('storageArray', storageArray)
         let favs = storageArray ? storageArray : []
         setStorageFavs(favs)
     }, [])
 
      const handleClick = () => {
-        const result = storageFavs.find(({ id }) => id === comic.id);
-        const index = storageFavs.findIndex(e => e.id === comic.id);
+        const result: {} | undefined = storageFavs.find(({ id }: any) => id === comic.id);
+        const index: number = storageFavs.findIndex(e => e.id === comic.id);
 
         if ((result) ) {
             comic.favStatus = false;
@@ -46,7 +32,7 @@ export default function Button ({comic }: Props) {
         } else if (storageFavs.length < 10) {
             comic.favStatus = true;
             storageFavs.push(comic)
-            let newArray = storageFavs;
+            let newArray: {}[] = storageFavs;
             setStorageFavs(newArray)
             localStorage.setItem('favorites', JSON.stringify(newArray))
         } else if (storageFavs.length === 10) {

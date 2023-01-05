@@ -1,16 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../state/PageWrapper';
-
-
-interface Creators {
-  id: number,
-  fullName: string,
-}[]
+import { Root } from '../Components/Interfaces';
 
 export default function useFetchCreators () {
-    const { creatorFilter, total, setTotal, offset } = useContext(AppContext);
+    const { creatorFilter, offset } = useContext(AppContext);
     const [totalCreators, setTotalCreators] = useState<number>(0)
-    const [creatorFilteredComics, setCreatorFilteredComics] = useState<Creators>([])
+    const [creatorFilteredComics, setCreatorFilteredComics] = useState<Root | undefined>()
+
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
@@ -30,11 +26,12 @@ export default function useFetchCreators () {
             console.log('creator data', data.data)
             setCreatorFilteredComics(data.data.results)
         } 
-        setLoading(false)
-        setTotalCreators(data.data.total)
-        if (data.data.total === 0) {
-          alert(`No comics contain the creator ${creatorFilter.name}.`)
+        if (data.data.results.length) {
+          setTotalCreators(data.data.total)
+        } else {
+          alert(`No comics contain the creator ${creatorFilter.fullName}.`)
         }
+        setLoading(false)
       } catch (e) {
         console.error(e)
       }
@@ -44,7 +41,7 @@ export default function useFetchCreators () {
       if (creatorFilter.id) {
         getCreators()
       } else {
-        setCreatorFilteredComics([])
+        setCreatorFilteredComics(undefined)
       }
       }, [creatorFilter, offset])
 
@@ -52,9 +49,7 @@ export default function useFetchCreators () {
 
     
     return (
-    
       {creatorFilteredComics, totalCreators}
-
     )
 }
 

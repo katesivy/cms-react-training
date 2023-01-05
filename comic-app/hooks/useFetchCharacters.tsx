@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../state/PageWrapper';
+import { Root } from '../Components/Interfaces'
 
-
-interface Characters {
-  id?: number,
-  fullName?: string,
-}[]
 
 export default function useFetchCharacters () {
-    const { characterFilter, creatorFilter, total, setTotal, offset } = useContext(AppContext);
-    const [characterFilteredComics, setCharacterFilteredComics] = useState<Characters>([])
+    const { characterFilter, offset } = useContext(AppContext);
+    const [characterFilteredComics, setCharacterFilteredComics] = useState<Root | undefined>()
     const [totalChars, setTotalChars] = useState<number>(0)
+    const [isLoading, setLoading] = useState<boolean>(false)
+
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');
@@ -19,8 +17,6 @@ export default function useFetchCharacters () {
     const auth: string = `${timestamp}${privateKey}${publicKey}`; 
     var hash: string = crypto.createHash('md5').update(auth).digest('hex');
     const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
-    
-    const [isLoading, setLoading] = useState<boolean>(false)
 
     const getCharacters = async () => {
       try {
@@ -31,8 +27,9 @@ export default function useFetchCharacters () {
             setCharacterFilteredComics(data.data.results)
         } 
         setLoading(false)
-        setTotalChars(data.data.total)
-        if (data.data.total === 0) {
+        if (data.data.results.length) {
+          setTotalChars(data.data.total)
+        } else {
           alert(`No comics contain the character ${characterFilter.name}.`)
         }
       } catch (e) {
@@ -44,7 +41,7 @@ export default function useFetchCharacters () {
       if (characterFilter.id) {
         getCharacters()
       } else {
-        setCharacterFilteredComics([])
+        setCharacterFilteredComics(undefined)
       }
       }, [characterFilter, offset])
 

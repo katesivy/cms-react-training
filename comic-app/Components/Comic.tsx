@@ -1,33 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Detail from "./Detail";
 import styles from '../styles/Comic.module.css'
 import Button from "./Button";
-import { AppContext } from "../state/PageWrapper"
-
-type Thumbnail = {
-  path: string,
-  extension: string,
-  id? : number | undefined
-}
-
-// type Dates = {
-//   date: string;
-// }[]
+import { Root } from '../Components/Interfaces'
 
 type Props = {
-  comic: {
-    id: string; 
-    title: string | undefined;
-    issueNumber: number; 
-    creators: string[] | undefined; 
-    thumbnail: Thumbnail; 
-    characters: {};
-    dates?: any;
-    // dates?: Dates | undefined;
-    // newDate: string;
-    isFavorite: boolean,
-  }
+  comic: Root
   title: string,
   newDate: string,
   index: number
@@ -39,7 +18,6 @@ type LoaderProps = {
   quality?: number | string | undefined, 
   alt?: number,
 }
-
 
 
 export default function Comic ({comic, title, newDate, index}: Props) {

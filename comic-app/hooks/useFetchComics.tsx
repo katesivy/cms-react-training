@@ -1,40 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../state/PageWrapper';
-
-type Thumbnail = {
-  path: string,
-  extension: string,
-  id? : number
-}
-
-type Characters = {
-  available: number,
-  collectionURI: string,
-  items: string[],
-  returned: number
-}
-
-type Dates = {
-  date: string;
-  type: string;
-}[] 
-
-interface Comics {
-  isFavorite: boolean;
-  id: string; 
-  title: string;
-  issueNumber: number; 
-  creators: string[] | undefined; 
-  thumbnail: Thumbnail; 
-  characters: Characters | undefined;
-  dates?: Dates | undefined;
-}[]
+import { Root } from '../Components/Interfaces';
 
 
 export default function useFetchComics () {
-    const [comics, setComics] = useState<Comics>([])
-    const { total, setTotal, offset} = useContext(AppContext);
+    const [comics, setComics] = useState<Root>()
+    const { offset } = useContext(AppContext);
     const [totalComics, setTotalComics] = useState<number>(0)
+
     const privateKey: string | undefined = process.env.NEXT_PUBLIC_PRIVATE_API_KEY
     const publicKey: string | undefined = process.env.NEXT_PUBLIC_API_KEY
     var crypto = require('crypto');

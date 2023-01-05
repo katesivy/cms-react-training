@@ -9,9 +9,9 @@ const initialState = {count: 0}
 
 
 export default function Pagination () {
-    const { total, setTotal, offset, setOffset, characterFilter, creatorFilter, } = useContext(AppContext);
+    const { total, setOffset } = useContext(AppContext);
 
-    function reducer(state, action) {
+    function reducer(state: { count: number; }, action: { type: string; }) {
         console.log('statecount', state.count, 'pagination total', total)
         switch (action.type) {
             case 'add': 

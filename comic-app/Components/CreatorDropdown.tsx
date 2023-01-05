@@ -5,8 +5,13 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 
+type Creator = {
+    id: string,
+    fullName: string
+}
+
 export default function CreatorDropdown () {
-    const creatorArray = [
+    const creatorArray: {}[] = [
         {fullName:'View All', id: ''},
         {fullName:'Kate Leth', id: '12787'},
         {fullName:'Brian Michael Bendis', id: '24'},
@@ -20,7 +25,7 @@ export default function CreatorDropdown () {
     const { creatorFilter, setCreatorFilter  } = useContext(AppContext);
     const [open, setOpen] = useState<boolean>(false);
 
-    const handleClick = (e, creator) => {
+    const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, creator: Creator) => {
         e.preventDefault();
         setOpen(prevState => !prevState), 
         setCreatorFilter(creator) 
@@ -30,7 +35,7 @@ export default function CreatorDropdown () {
       <div>
          <label className={styles.label}>
             Filter by: 
-        <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (creatorFilter.id == '' ) | (creatorFilter.id == undefined) ? 'Creator' : creatorFilter.fullName }
+        <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (creatorFilter.id == '' ) || (creatorFilter.id == undefined) ? 'Creator' : creatorFilter.fullName }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
         </button>
             {open && <div className={styles.dropdownDiv}>
