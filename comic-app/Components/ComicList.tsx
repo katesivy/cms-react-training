@@ -10,6 +10,9 @@ import useFetchCharacters from "../hooks/useFetchCharacters";
 import Pagination from "./Pagination";
 import useFetchBoth from "../hooks/useFetchBoth";
 import { Root } from './Interfaces'
+import Favorites from "./Favorites";
+import ShowFavorites from "./ShowFavorites";
+import ShowFilters from "./ShowFilters";
 
 
 export default function ComicList () {
@@ -17,12 +20,41 @@ export default function ComicList () {
     const { creatorFilteredComics, totalCreators } = useFetchCreators();
     const { characterFilteredComics, totalChars } = useFetchCharacters();
     const { bothSelectedComics, bothTotal } = useFetchBoth();
-    const { storageFavs, setTotal }  = useContext(AppContext);
+    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, windowSize, setWindowSize, showFilters, setShowFilters, isFiltersOpen, setIsFiltersOpen }  = useContext(AppContext);
     const [comicList, setComicList] = useState<Root | undefined>()
+    
+    // console.log('char filter', characterFilteredComics, totalChars)
+    // console.log('creator filter', creatorFilteredComics, totalCreators)
+    // console.log('bothfilter', bothSelectedComics, bothTotal)
+ 
+    let innerWidth: number;
+    if (typeof window !== "undefined") {
+        innerWidth = window.innerWidth;
+    } else {
+       innerWidth = 0;
+    }
 
-    console.log('char filter', characterFilteredComics, totalChars)
-    console.log('creator filter', creatorFilteredComics, totalCreators)
-    console.log('bothfilter', bothSelectedComics, bothTotal)
+    useEffect(() => {
+        console.log('handle windowsize', innerWidth)
+        function handleWindowResize() {
+            setWindowSize(innerWidth);
+            if (innerWidth >= 640) {
+                console.log('bigger, setting to true')
+                setShowFavorites(false)
+                setShowFilters(false)
+                setIsFavoritesOpen(false)
+            } else {
+                console.log('smaller, setting to false')
+                setShowFavorites(true)
+                setShowFilters(true)
+            }
+        }
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, [innerWidth]);
 
     useEffect(() => {
         if (bothSelectedComics && bothSelectedComics.length) {
@@ -45,12 +77,26 @@ export default function ComicList () {
     }, [comics, creatorFilteredComics, characterFilteredComics, bothSelectedComics])
 
     return (
-        <div className={styles.comicsSection}>
+        <>
+   <div className={styles.comicsSection}>
             <div className={styles.filterBox}>
-                <CharacterDropdown  />
-                <CreatorDropdown  />
+                {showFilters && <ShowFilters />} 
+                {showFilters && isFiltersOpen && <CharacterDropdown  />}
+                {showFilters && isFiltersOpen && <CreatorDropdown  />}
+                {showFavorites && <ShowFavorites />}
+                {showFavorites && isFavoritesOpen && <Favorites />}
+                {/* {isFavoritesOpen &&
+                    <button className={styles.dropdownButtonHide} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
+                        'Hide Favorites'
+                        <FontAwesomeIcon className={styles.icon} icon={faBolt} />
+                    </button>
+                 } */}
+
+                {!showFilters && <CharacterDropdown  />} 
+                {!showFilters && <CreatorDropdown  />}
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(15rem, 50%), 1fr))', background: '#F8F8F2' }} className={styles.grid}>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(20rem, 100%), 1fr))', background: '#F8F8F2', border: 'solid red' }} className={styles.grid}>
                 {comicList && comicList.map((comic: Root, index: number) => {
                     var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
                     var d = new Date(comic.dates[0].date)
@@ -71,5 +117,7 @@ export default function ComicList () {
             </div>
             <Pagination />
         </div>
+        {!showFavorites && !isFavoritesOpen && <Favorites />} 
+        </>
     )
 }

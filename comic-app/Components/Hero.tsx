@@ -39,8 +39,8 @@ export default function Hero() {
             (max-width: 640px) 100vw,
             33vw"
         />
-    
-        const logoImage: any =
+
+    const logoImage: any =
         <Image className={styles.logo2}
             loader={myLoader}
             src={logo2}

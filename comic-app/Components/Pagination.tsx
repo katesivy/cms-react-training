@@ -7,17 +7,19 @@ import styles from '../styles/Pagination.module.css'
 
 const initialState = {count: 0}
 
-
 export default function Pagination () {
-    const { total, setOffset } = useContext(AppContext);
+    const { total, offset, setOffset } = useContext(AppContext);
 
     function reducer(state: { count: number; }, action: { type: string; }) {
         console.log('statecount', state.count, 'pagination total', total)
         switch (action.type) {
             case 'add': 
                 setOffset(state.count + 15)
-                if (state.count == total) {
-                    return {count: state.count}
+                if ((state.count == total) || (offset + 15 > total)) {
+                    setOffset(state.count)
+                    return {
+                        count: state.count
+                    }
                 } else {
                     return {
                         count: state.count + 15,
@@ -27,12 +29,14 @@ export default function Pagination () {
                 console.log('statecount', state.count)
                 setOffset(state.count - 15)
                 if (state.count <= 15) {
-                    return {count: initialState.count}
+                    return {
+                        count: initialState.count
+                    }
                 } else {
                     return {
                         count: state.count - 15,
                     }
-            }
+                }
             case 'reset': 
                 return {
                     count: initialState.count

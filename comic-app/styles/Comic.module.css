@@ -9,6 +9,14 @@
     margin: auto;
 }
 
+@media (max-width: 640px) {
+    .ul {
+        display: flex;
+        flex-direction: row-reverse;
+        max-width: none;
+    }
+}
+
 .image {
     box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.4);
     border: solid black;

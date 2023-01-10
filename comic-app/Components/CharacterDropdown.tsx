@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
+import { Character } from "./Interfaces";
+import useFetchCharacters from "../hooks/useFetchCharacters";
 
 
 export default function CharacterDropdown () {
-    const characterArray = [
+    const characterArray: Character[] = [
         {name:'View All', id: ''},
         {name:'Iron Man', id: '1009368'},
         {name:'Captain America', id: '1009220'},
@@ -19,20 +21,27 @@ export default function CharacterDropdown () {
         {name:'Gamora', id: '1010763'},
         {name:'Storm', id: '1010979'}
     ]
-    const {characterFilter, setCharacterFilter } = useContext(AppContext);
+    const {characterFilter, setCharacterFilter, showFilters } = useContext(AppContext);
+    const { characterFilteredComics } = useFetchCharacters();
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, character: { name: string; id: string; }) => {
         e.preventDefault();
-        setOpen(prevState => !prevState), 
-        setCharacterFilter(character) 
+        setCharacterFilter(character);
+        if (characterFilteredComics && !characterFilteredComics.length) {
+            setCharacterFilter({name: 'Character', id: ''})
+        }
+        setOpen(prevState => !prevState); 
     }
   
     return (
       <div>
          <label className={styles.label}>
             Filter by:
-            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>{ (characterFilter.id == '' ) || (characterFilter.id == undefined) ? 'Character' : characterFilter.name }
+            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
+                { (characterFilter.id == '' ) || (characterFilter.id == undefined) || (characterFilteredComics && !characterFilteredComics.length)
+                ? 'Character' 
+                : characterFilter.name }
                 <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
             </button>
             {open && <div className={styles.dropdownDiv}>

@@ -3,7 +3,7 @@ import { AppContext } from '../state/PageWrapper';
 import { Root } from '../Components/Interfaces';
 
 export default function useFetchCreators () {
-    const { creatorFilter, offset } = useContext(AppContext);
+    const { creatorFilter, characterFilter, setCreatorFilter, offset } = useContext(AppContext);
     const [totalCreators, setTotalCreators] = useState<number>(0)
     const [creatorFilteredComics, setCreatorFilteredComics] = useState<Root | undefined>()
 
@@ -38,7 +38,10 @@ export default function useFetchCreators () {
     }
   
     useEffect(() => {
-      if (creatorFilter.id) {
+      if (creatorFilteredComics && !creatorFilteredComics.length) {
+        setCreatorFilter({fullName: 'Creator', id: ''})
+      } 
+      if (creatorFilter.id && !characterFilter.id) {
         getCreators()
       } else {
         setCreatorFilteredComics(undefined)

@@ -71,8 +71,9 @@
 
 @media (max-width: 640px) {
   .heroTitleBox {
-    top: -150px;
-    left: 0;
+    margin: 0 auto;
+    top: -50px;
+    /* left: 0; */
     width: 256px;
     height: 66px;
   }
@@ -176,7 +177,7 @@
 @media (max-width: 640px) {
     .latin {
       position: relative;
-      top: 220px;
+      top: 150px;
       left: 0;
       width: 80vw;
     }

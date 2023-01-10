@@ -1,10 +1,19 @@
 .favBox {
+    transform: translateY(200px);
+    margin-left: 10px;
     height: fit-content;
     width: 30%;
     background-color: #222222;
     color: #F8F8F2;
-    transform: translateY(200px);
-    margin-left: 10px;
+}
+
+@media (max-width: 640px) {
+    .favBox {
+        position: absolute;
+        top: 640px;
+        margin-left: 0;
+        width: auto;
+    }
 }
 
 .title {

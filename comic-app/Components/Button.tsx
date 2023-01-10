@@ -13,11 +13,12 @@ type Props = {
 
 export default function Button ({comic }: Props) {
     const { toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
-
+ 
     useEffect(() => {
-        let storageArray: Favs[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : [];
-        let favs: Favs[] = storageArray ? storageArray : []
-        setStorageFavs(favs)
+        let local: string | null = window.localStorage ? window.localStorage.getItem('favorites') : '';
+        let storageArray: Favs[] = local ? JSON.parse(local) : [];
+        let favs: Favs[] = storageArray.length ? storageArray : [];
+        setStorageFavs(favs);
     }, [])
 
      const handleClick = () => {

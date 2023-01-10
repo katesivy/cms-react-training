@@ -1,0 +1,29 @@
+.label {
+    background-color: #222222;
+    width: 50%;
+    max-width: 50%;
+}
+
+.filterBox {
+    border: solid yellow;
+    border-radius: 4px;
+}
+
+.filterDiv {
+    width: 50%;
+    background-color: #222222;
+}
+
+.dropdownButton {
+    padding: 5px;
+    /* width: 245px; */
+    background-color: #222222;
+    border-radius: 4px;
+    color: #F8F8F2;
+    text-align: start;
+}
+
+.dropdownDiv {
+    background-color: paleturquoise;
+    border: solid pink;
+}

@@ -12,12 +12,12 @@ type LoaderProps = {
 }
 
 export default function Favorites () {
-    const { isFavorite, toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
+    const { isFavorite, toggleFavorite, storageFavs, setStorageFavs, windowSize, setWindowSize }  = useContext(AppContext);
     const [list, setList] = useState<JSX.Element[] | undefined>([]);
 
     const myLoader = ({ src, width, quality }: LoaderProps) => {
         return `${src}?w=${width}&q=${quality || 75}`
-      }
+    }
 
     const removeFavorite = (comic: Root, storageArray: any[]) => {
         const result = storageFavs ? storageFavs.find(({ id }: any) => id === comic.id) : storageArray.find(({ id }) => id === comic.id);
@@ -37,9 +37,12 @@ export default function Favorites () {
     }
     
     useEffect(() => {
-        let storageArray: Root[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : []
+        let local: string | null = window.localStorage ? window.localStorage.getItem('favorites') : '';
+        let storageArray: Root[] = local ? JSON.parse(local) : [];
+        // let favs: Favs[] = storageArray.length ? storageArray : [];
+        // let storageArray: Root[] = localStorage ? JSON.parse(localStorage.getItem('favorites') || "") : []
         setStorageFavs(storageArray)
-        let favs: JSX.Element[] = storageArray ? storageArray.map((comic, index: number) => {
+        let favs: JSX.Element[] = storageArray.length ? storageArray.map((comic, index: number) => {
             const path: {} = comic.thumbnail.path + '.'
             const extenstion: string = comic.thumbnail.extension 
             const imgSrc: string = path + extenstion

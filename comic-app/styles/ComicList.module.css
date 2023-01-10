@@ -1,6 +1,33 @@
 .comicsSection {
     width: 100%;
+    border: solid blue;
 }
+
+@media (max-width: 640px) {
+    .comicsSection {
+        border: solid black;
+    }
+}
+
+/* .mobileFilter {
+    margin-top: 200px;
+    width: 100%;
+    padding: 10px;
+    background-color: #222222;
+    color: white;
+} */
+
+/* @media (min-width: 640px) {
+    .mobileFilter {
+        display: none;
+    }
+} */
+
+/* @media (max-width: 640px) {
+    .desktopFilter {
+        display: none;
+    }
+} */
   
 .filterBox {
       display: inline-flex;
@@ -11,7 +38,16 @@
       color: white;
 }
 
+@media (max-width: 640px) {
+    .filterBox {
+        display: grid;
+        max-width: 100%;
+        /* background-color: blue; */
+    }
+}
+
 .grid {
     max-width: 100%;
+    background-color: lightblue;
 }
   

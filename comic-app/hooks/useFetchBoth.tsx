@@ -3,7 +3,7 @@ import { AppContext } from '../state/PageWrapper';
 import { Root } from '../Components/Interfaces';
 
 export default function useFetchBoth () {
-    const { characterFilter, creatorFilter, offset } = useContext(AppContext);
+    const { characterFilter, creatorFilter, offset, total } = useContext(AppContext);
     const [bothSelectedComics, setBothSelectedComics] = useState<Root | undefined>()
     const [bothTotal, setBothTotal] = useState<number>(0)
     const [isLoading, setLoading] = useState<boolean>(false)
@@ -16,7 +16,7 @@ export default function useFetchBoth () {
     const auth: string = `${timestamp}${privateKey}${publicKey}`; 
     var hash: string = crypto.createHash('md5').update(auth).digest('hex');
     const url: string = `${baseUrl}ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
-
+// console.log('char filter', characterFilter, 'creator filter', creatorFilter)
     const getBoth = async () => {
         console.log('getting both')
       try {
@@ -31,14 +31,14 @@ export default function useFetchBoth () {
             setBothTotal(data.data.total)
         } else {
             alert(`No comics contain the character ${characterFilter.name} and creator ${creatorFilter.fullName}.`)
-          }
+        }
       } catch (e) {
         console.error(e)
       }
     }
   
     useEffect(() => {
-      if (characterFilter.id && creatorFilter.id) {
+      if (characterFilter.id && characterFilter.id != '' && creatorFilter.id && creatorFilter.id != '') {
         getBoth()
       } else {
         setBothSelectedComics(undefined)
