@@ -63,7 +63,7 @@ export default function Favorites () {
                     <div key={index} className={styles.favDiv} >
                         {image}
                         <div className={styles.content}>
-                            {splitTitle}<br />
+                        <div className={styles.title}> {splitTitle}<br /></div>
                             Issue: {comic.issueNumber}
                         </div>
                     </div>
@@ -76,7 +76,7 @@ export default function Favorites () {
 
     return (
         <div className={styles.favBox}>
-            <h2 className={styles.title}>Favorites</h2>
+            <h2 className={styles.sectionTitle}>Favorites</h2>
             <div className={styles.list}>
                 <ul className={styles.ul}>
                     {list}

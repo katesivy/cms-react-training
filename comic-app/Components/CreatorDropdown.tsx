@@ -45,7 +45,7 @@ export default function CreatorDropdown () {
             {open && <div className={styles.dropdownDiv}>
                 {creatorArray.map((creator, index) => {
                     return (
-                        <ul key={index} onClick={(e) => handleClick(e, creator)}>{creator.fullName}</ul>
+                        <ul className={styles.ul} key={index} onClick={(e) => handleClick(e, creator)}>{creator.fullName}</ul>
                         )
                 })}
             </div> }

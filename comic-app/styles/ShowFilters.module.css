@@ -1,3 +1,7 @@
+.showFilterDiv {
+    width: 150px;
+}
+
 .dropdownButton {
     margin-left: 10px;
     background-color: #222222;
@@ -7,9 +11,15 @@
     border: none;
 }
 
-
 .icon {
     background-color: #222222;
     color: #F8F8F2;
     margin-left: 5px;
 }
+
+@media (max-width: 640px) {
+    .dropdownButton {
+        margin-left: 5px;
+    }
+}
+

@@ -1,41 +1,39 @@
 .comicsSection {
-    /* top: 100px; */
     width: 100%;
-    /* background: #F8F8F2; */
     background:  #F8F8F2;
-    /* border: solid blue; */
 }
-
-/* @media (max-width: 640px) {
-    .comicsSection {
-        top: 320px;
-    }
-} */
 
 .filterBox {
       display: inline-flex;
+      /* justify-content: flex-start; */
       width: 100%;
-      padding: 10px;
+      padding: 15px 10px 15px 10px;
       background-color: #222222;
       color: #F8F8F2;
-      
+      font-weight: bold;
+      font-size: 16px;
 }
 
 @media (max-width: 640px) {
     .filterBox {
         display: flex;
+        flex-wrap: wrap;
         max-width: 100%;
         color: #F8F8F2;
-        border: solid red;
+        justify-content: space-between;
     }
 
     .filterOptions {
-        /* border: solid gray; */
         align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .dropdowns {
+        width: 100%;
     }
 
     .favOptions {
-        /* border: solid pink; */
         color: #F8F8F2;
         align-self: center;
     }

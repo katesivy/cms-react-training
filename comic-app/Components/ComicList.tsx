@@ -82,23 +82,25 @@ export default function ComicList () {
             <div className={styles.filterBox}>
                 <div className={styles.filterOptions}>
                     {showFilters && <ShowFilters />} 
-                    {showFilters && isFiltersOpen && <CharacterDropdown  />}
-                    {showFilters && isFiltersOpen && <CreatorDropdown  />}
+                    <div className={styles.dropdowns}>
+                        {showFilters && isFiltersOpen && <CharacterDropdown  />}
+                        {showFilters && isFiltersOpen && <CreatorDropdown  />}
+                    </div>
                 </div>
                 <div className={styles.favOptions}>
                     {showFavorites && <ShowFavorites />}
-                    {showFavorites && isFavoritesOpen && <Favorites />}
                 </div>
+                {showFavorites && isFavoritesOpen && <Favorites />}
+                {!showFilters && <CharacterDropdown  />} 
+                {!showFilters && <CreatorDropdown  />}
+            </div>
+
                 {/* {isFavoritesOpen &&
                     <button className={styles.dropdownButtonHide} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
                         'Hide Favorites'
                         <FontAwesomeIcon className={styles.icon} icon={faBolt} />
                     </button>
                  } */}
-                {!showFilters && <CharacterDropdown  />} 
-                {!showFilters && <CreatorDropdown  />}
-            </div>
-
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px), 4fr))', background: '#F8F8F2', gap: '10px' }} className={styles.grid}>
                 {comicList && comicList.map((comic: Root, index: number) => {
                     var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });

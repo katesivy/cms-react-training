@@ -37,7 +37,7 @@ export default function CharacterDropdown () {
     return (
       <div>
          <label className={styles.label}>
-            Filter by:
+           {!showFilters && <>Filter by:</>}
             <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
                 { (characterFilter.id == '' ) || (characterFilter.id == undefined) || (characterFilteredComics && !characterFilteredComics.length)
                 ? 'Character' 
@@ -47,7 +47,7 @@ export default function CharacterDropdown () {
             {open && <div className={styles.dropdownDiv}>
                 {characterArray.map((character, index) => {
                     return (
-                        <ul key={index} onClick={(e) => handleClick(e, character)}>{character.name}</ul>
+                        <ul className={styles.ul} key={index} onClick={(e) => handleClick(e, character)}>{character.name}</ul>
                         )
                 })}
             </div>}
