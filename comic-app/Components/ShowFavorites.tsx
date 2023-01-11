@@ -9,13 +9,13 @@ export default function ShowFavorites () {
     const { isFavoritesOpen, setIsFavoritesOpen } = useContext(AppContext);
   
     return (
-      <div>
-         <label className={styles.label}>
+      <div className={styles.showFavDiv} >
+         {/* <label className={styles.label}> */}
             <button className={styles.dropdownButton} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
                 {!isFavoritesOpen ? 'Show Favorites' : 'Hide Favorites'}
                 <FontAwesomeIcon className={styles.icon} icon={faBolt} />
             </button>
-        </label>
+        {/* </label> */}
       </div>
     );
 }

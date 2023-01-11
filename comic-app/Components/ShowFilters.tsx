@@ -5,15 +5,15 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 
-export default function ShowFavorites () {
+export default function ShowFilters () {
     const { isFiltersOpen, setIsFiltersOpen } = useContext(AppContext);
   
     return (
-      <div className={styles.filterBox}>
+      <div className={styles.showFilterDiv}>
          {/* <label className={styles.label}> */}
             <button className={styles.dropdownButton} onClick={() => { setIsFiltersOpen(prevState => !prevState)}}>
-                Show Filters 
-                <FontAwesomeIcon className={styles.hamburger} icon={faFilter} />
+                Filter
+                <FontAwesomeIcon className={styles.icon} icon={faFilter} />
             </button>
         {/* </label> */}
       </div>

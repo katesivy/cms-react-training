@@ -35,7 +35,7 @@ export default function CreatorDropdown () {
     return (
       <div>
          <label className={styles.label}>
-            Filter by: 
+            
         <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
                 { (creatorFilter.id == '' ) || (creatorFilter.id == undefined) || ( creatorFilteredComics && !creatorFilteredComics.length ) 
                     ? 'Creator' 

@@ -1,7 +1,35 @@
-.mainContainer {
-  display: flex;
-  padding: 10px;
-  margin: 0;
+.appContainer {
+  background: #F8F8F2;
 }
 
+.mainContainer {
+  display: flex;
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  background:  #F8F8F2;
+}
 
+@media (max-width: 425px) {
+  .mainContainer {
+    padding-top: 320px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 640px) {
+  .mainContainer {
+    padding-top: 270px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .mainContainer {
+    padding-top: 0px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mainContainer {
+    padding-top: 270px;
+  }
+}

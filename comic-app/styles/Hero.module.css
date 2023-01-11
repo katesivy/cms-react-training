@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 875px; 
+    height: 775px; 
     width: 100vw;
     position: relative;
+    /* background: #F8F8F2; */
+    background:  #F8F8F2;
   }
 
 @media (max-width: 640px) {
@@ -37,9 +39,6 @@
   .heroImage {
     background: transparent url('/hero-photo.png') 0% 0% no-repeat padding-box;
     height: 800px;
-    /* width: 100%; */
-    /* object-fit: cover; */
-    /* object-position: 50% 50%; */
   }
 }
 
@@ -57,14 +56,10 @@
 }
   
 .heroTitleBox {
-    /* position: relative; */
     position: absolute;
     transform: translate(0px, 200px);
-    /* top: -750px; */
-    /* left: 30px; */
     width: 572px;
     height: 148px;
-    /* UI Properties */
     background: #C24868E6 0% 0% no-repeat padding-box;
     opacity: 1;
 }
@@ -100,11 +95,18 @@
   top: 700px;
   width: 500px;
   height: 100px;
+  z-index: 4;
 }
 
 @media (max-width: 640px) {
   .headingContainer {
-    top: 400px;
+      top: 400px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1040px) {
+  .headingContainer {
+      top: 500px;
   }
 }
 
@@ -114,9 +116,14 @@
     text-align: center;
     width: 159px;
     height: 39px;
-    /* UI Properties */
     background: #9ECFC5;
     opacity: 1;
+}
+
+@media (max-width: 640px) {
+    .newComicsBox {
+        transform: translate(100px, -10px) rotate(-5deg);
+    }
 }
 
 .newComics {
@@ -125,7 +132,6 @@
     left: 10px;
     width: 127px;
     height: 0;
-    /* UI Properties */
     /* text-align: center; */
     font: normal normal 900 18px/16px Montserrat;
     letter-spacing: 0px;
@@ -139,7 +145,6 @@
     /* top: 565px; */
     width: 469px;
     height: 59px;
-    /* UI Properties */
     text-align: left;
     font: normal normal 900 49px/16px Montserrat;
     letter-spacing: 0px;
@@ -151,11 +156,10 @@
 @media (max-width: 640px) {
   .comingOutDaily {
     position: relative;
-    top: 100px;
-    left: 20px;
+    top: 80px;
+    left: 112px;
     width: 239px;
     height: 30px;
-    /* UI Properties */
     text-align: left;
     font: normal normal 900 25px/16px Montserrat;
   }
@@ -166,25 +170,26 @@
     top: 800px;
     width: 670px;
     height: 120px;
-    /* UI Properties */
     text-align: left;
     font: normal normal normal 20px/32px Montserrat;
     letter-spacing: 0px;
     color: #222222;
     opacity: 1;
+    z-index: 4;
   }
 
 @media (max-width: 640px) {
     .latin {
-      position: relative;
-      top: 150px;
-      left: 0;
-      width: 80vw;
+        position: relative;
+        top: 220px;
+        left: 0;
+        width: 91%;
     }
 }
 
 @media (min-width: 641px) and (max-width: 1040px) {
     .latin {
-      width: 80vw;
+        top: 600px;
+        width: 80vw;
     }
 }

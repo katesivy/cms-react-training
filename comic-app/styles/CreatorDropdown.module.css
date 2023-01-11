@@ -1,6 +1,26 @@
-.label {
+/* .label {
+    margin-left: 10px;
     background-color: #222222;
     border-radius: 4px;
+} */
+
+@media (min-width: 641px) {
+    .dropdownButton {
+        padding: 5px;
+        margin-left: 20px;
+        width: 245px;
+        border: 1px solid #F8F8F2;
+        border-radius: 3px;
+        background-color: #222222;
+        color: #F8F8F2;
+        text-align: start;
+        font: 16px;
+        letter-spacing: 0px;
+    }
+
+    .angleIcon {
+        margin-left: 170px;
+    }
 }
 
 .dropdownButton {
@@ -10,6 +30,12 @@
     border-radius: 4px;
     color: #F8F8F2;
     text-align: start;
+}
+
+@media (max-width: 640px) {
+    .dropdownButton {
+        width: 50px;
+    }
 }
 
 .dropdownDiv {

@@ -39,12 +39,12 @@ export default function ComicList () {
         function handleWindowResize() {
             setWindowSize(innerWidth);
             if (innerWidth >= 640) {
-                console.log('bigger, setting to true')
+                console.log('bigger, setting to false')
                 setShowFavorites(false)
                 setShowFilters(false)
                 setIsFavoritesOpen(false)
             } else {
-                console.log('smaller, setting to false')
+                console.log('smaller, setting to true')
                 setShowFavorites(true)
                 setShowFilters(true)
             }
@@ -78,25 +78,28 @@ export default function ComicList () {
 
     return (
         <>
-   <div className={styles.comicsSection}>
+        <div className={styles.comicsSection}>
             <div className={styles.filterBox}>
-                {showFilters && <ShowFilters />} 
-                {showFilters && isFiltersOpen && <CharacterDropdown  />}
-                {showFilters && isFiltersOpen && <CreatorDropdown  />}
-                {showFavorites && <ShowFavorites />}
-                {showFavorites && isFavoritesOpen && <Favorites />}
+                <div className={styles.filterOptions}>
+                    {showFilters && <ShowFilters />} 
+                    {showFilters && isFiltersOpen && <CharacterDropdown  />}
+                    {showFilters && isFiltersOpen && <CreatorDropdown  />}
+                </div>
+                <div className={styles.favOptions}>
+                    {showFavorites && <ShowFavorites />}
+                    {showFavorites && isFavoritesOpen && <Favorites />}
+                </div>
                 {/* {isFavoritesOpen &&
                     <button className={styles.dropdownButtonHide} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
                         'Hide Favorites'
                         <FontAwesomeIcon className={styles.icon} icon={faBolt} />
                     </button>
                  } */}
-
                 {!showFilters && <CharacterDropdown  />} 
                 {!showFilters && <CreatorDropdown  />}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(20rem, 100%), 1fr))', background: '#F8F8F2', border: 'solid red' }} className={styles.grid}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px), 4fr))', background: '#F8F8F2', gap: '10px' }} className={styles.grid}>
                 {comicList && comicList.map((comic: Root, index: number) => {
                     var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
                     var d = new Date(comic.dates[0].date)

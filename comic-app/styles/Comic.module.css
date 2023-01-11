@@ -1,5 +1,6 @@
 .comicDiv {
     padding: 10px;
+    margin: 20px 0;
 }
 
 .ul {
@@ -9,15 +10,25 @@
     margin: auto;
 }
 
+.image {
+    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 640px) {
     .ul {
         display: flex;
         flex-direction: row-reverse;
-        max-width: none;
+        min-width: fit-content;
+    }
+
+    .image {
+        max-height: 200px;
+        max-width: 150px;;
     }
 }
 
-.image {
-    box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.4);
-    border: solid black;
+@media (max-width: 370px) {
+    .image {
+        max-width: 130px;
+    }
 }

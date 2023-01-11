@@ -24,9 +24,9 @@ export default function CharacterDropdown () {
     const {characterFilter, setCharacterFilter, showFilters } = useContext(AppContext);
     const { characterFilteredComics } = useFetchCharacters();
     const [open, setOpen] = useState<boolean>(false);
-
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, character: { name: string; id: string; }) => {
         e.preventDefault();
+        console.log('clicked char dropdown')
         setCharacterFilter(character);
         if (characterFilteredComics && !characterFilteredComics.length) {
             setCharacterFilter({name: 'Character', id: ''})

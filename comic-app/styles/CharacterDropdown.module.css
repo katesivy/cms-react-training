@@ -1,8 +1,10 @@
 .label {
+    margin-left: 20px;
     background-color: #222222;
     width: 50%;
     max-width: 50%;
     border-radius: 4px;
+    font-weight: bold;
 }
 
 @media (max-width: 640px) {
@@ -12,19 +14,29 @@
     }
 }
 
-.dropdownButton {
-    padding: 5px;
-    border-radius: 3px;
-    /* width: 245px; */
-    background-color: #222222;
-    color: #F8F8F2;
-    text-align: start;
+@media (min-width: 641px) {
+    .dropdownButton {
+        padding: 5px;
+        margin-left: 10px;
+        width: 245px;
+        border: 1px solid #F8F8F2;
+        border-radius: 3px;
+        background-color: #222222;
+        color: #F8F8F2;
+        text-align: start;
+        font: 16px;
+        letter-spacing: 0px;
+    }
+
+    .angleIcon {
+        margin-left: 155px;
+    }
 }
 
 @media (max-width: 640px) {
     .dropdownButton {
         border-radius: 4px;
-        background-color: pink;
+        background:  #F8F8F2;
     }
 }
 

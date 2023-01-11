@@ -1,6 +1,5 @@
 .favBox {
-    transform: translateY(200px);
-    margin-left: 10px;
+    margin-left: 50px;
     height: fit-content;
     width: 30%;
     background-color: #222222;
@@ -9,10 +8,8 @@
 
 @media (max-width: 640px) {
     .favBox {
-        position: absolute;
-        top: 640px;
         margin-left: 0;
-        width: auto;
+        width: 100%;
     }
 }
 
