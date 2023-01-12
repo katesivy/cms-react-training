@@ -19,14 +19,11 @@ export default function ComicList () {
     const { comics, totalComics } = useFetchComics();
     const { creatorFilteredComics, totalCreators } = useFetchCreators();
     const { characterFilteredComics, totalChars } = useFetchCharacters();
-    const { bothSelectedComics, bothTotal } = useFetchBoth();
-    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, windowSize, setWindowSize, showFilters, setShowFilters, isFiltersOpen, setIsFiltersOpen }  = useContext(AppContext);
+    const { bothSelectedComics, bothTotal, bothStatus } = useFetchBoth();
+    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, windowSize, setWindowSize, showFilters, setShowFilters, isFiltersOpen, characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter }  = useContext(AppContext);
     const [comicList, setComicList] = useState<Root | undefined>()
-    
-    // console.log('char filter', characterFilteredComics, totalChars)
-    // console.log('creator filter', creatorFilteredComics, totalCreators)
-    // console.log('bothfilter', bothSelectedComics, bothTotal)
- 
+
+ console.log('comiclist bothStatus', bothStatus)
     let innerWidth: number;
     if (typeof window !== "undefined") {
         innerWidth = window.innerWidth;
@@ -57,6 +54,7 @@ export default function ComicList () {
     }, [innerWidth]);
 
     useEffect(() => {
+        console.log('comiclist bothStatus in useEffect', bothStatus)
         if (bothSelectedComics && bothSelectedComics.length) {
             console.log('both')
             setComicList(bothSelectedComics)
@@ -74,6 +72,14 @@ export default function ComicList () {
             setComicList(comics)
             setTotal(totalComics)
         }
+
+        // console.log('char bothStatus', bothStatus)
+        // if ((bothStatus === false) && (characterFilter == undefined)) {
+        //     setCharacterFilter({name: 'Character', id: ''})
+        // }
+        // if ((bothStatus === false) && (creatorFilter == undefined)) {
+        //     setCreatorFilter({fullName: 'Creator', id: ''})
+        // }
     }, [comics, creatorFilteredComics, characterFilteredComics, bothSelectedComics])
 
     return (

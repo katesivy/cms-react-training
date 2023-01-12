@@ -2,8 +2,11 @@ import React, { createContext, useContext } from 'react';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 import { useDropdown } from '../hooks/useDropdown';
 import { usePagination } from '../hooks/usePagination';
-import {  Character, Creator, Favs } from '../Components/Interfaces';
+import {  Character, Creator, Favs, Root } from '../Components/Interfaces';
 import { useMobileMenus } from '../hooks/useMobileMenus';
+import useFetchBoth from '../hooks/useFetchBoth';
+import Comic from '../Components/Comic';
+import ComicList from '../Components/ComicList';
 
 type SetStateAction<S> = S | ((prevState: S) => S);
 

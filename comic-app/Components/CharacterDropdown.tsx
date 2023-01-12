@@ -6,6 +6,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 import { Character } from "./Interfaces";
 import useFetchCharacters from "../hooks/useFetchCharacters";
+import useFetchBoth from "../hooks/useFetchBoth";
 
 
 export default function CharacterDropdown () {
@@ -21,12 +22,13 @@ export default function CharacterDropdown () {
         {name:'Gamora', id: '1010763'},
         {name:'Storm', id: '1010979'}
     ]
-    const {characterFilter, setCharacterFilter, showFilters } = useContext(AppContext);
+    const { characterFilter, setCharacterFilter, showFilters } = useContext(AppContext);
     const { characterFilteredComics } = useFetchCharacters();
+    const { bothStatus } = useFetchBoth();
     const [open, setOpen] = useState<boolean>(false);
+
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, character: { name: string; id: string; }) => {
         e.preventDefault();
-        console.log('clicked char dropdown')
         setCharacterFilter(character);
         if (characterFilteredComics && !characterFilteredComics.length) {
             setCharacterFilter({name: 'Character', id: ''})
