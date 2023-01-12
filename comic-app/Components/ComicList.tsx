@@ -20,10 +20,10 @@ export default function ComicList () {
     const { creatorFilteredComics, totalCreators } = useFetchCreators();
     const { characterFilteredComics, totalChars } = useFetchCharacters();
     const { bothSelectedComics, bothTotal, bothStatus } = useFetchBoth();
-    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, windowSize, setWindowSize, showFilters, setShowFilters, isFiltersOpen, characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter }  = useContext(AppContext);
+    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, showFilters, setShowFilters, isFiltersOpen, characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter }  = useContext(AppContext);
     const [comicList, setComicList] = useState<Root | undefined>()
+    const [windowSize, setWindowSize] = useState<number>(0);
 
- console.log('comiclist bothStatus', bothStatus)
     let innerWidth: number;
     if (typeof window !== "undefined") {
         innerWidth = window.innerWidth;
@@ -32,9 +32,24 @@ export default function ComicList () {
     }
 
     useEffect(() => {
+        console.log('1st: innerwidth', innerWidth, windowSize)
+        if (innerWidth >= 640) {
+            console.log('1st useeffect, setting to false')
+            setShowFavorites(false)
+            setShowFilters(false)
+            setIsFavoritesOpen(false)
+        } else {
+            console.log('2nd use effect, setting to true')
+            setShowFavorites(true)
+            setShowFilters(true)
+        }
+    });
+
+    useEffect(() => {
         console.log('handle windowsize', innerWidth)
         function handleWindowResize() {
             setWindowSize(innerWidth);
+            console.log('2nd: innerwidth', innerWidth, windowSize)
             if (innerWidth >= 640) {
                 console.log('bigger, setting to false')
                 setShowFavorites(false)
@@ -54,7 +69,7 @@ export default function ComicList () {
     }, [innerWidth]);
 
     useEffect(() => {
-        console.log('comiclist bothStatus in useEffect', bothStatus)
+        // console.log('comiclist bothStatus in useEffect', bothStatus, 'filters:', creatorFilter, characterFilter)
         if (bothSelectedComics && bothSelectedComics.length) {
             console.log('both')
             setComicList(bothSelectedComics)
@@ -67,7 +82,17 @@ export default function ComicList () {
             console.log('char only')
             setComicList(characterFilteredComics)
             setTotal(totalChars)
-        } else {
+        } 
+        // else if ((bothStatus === false) && (characterFilter && creatorFilter)) {
+        //     console.log('no comics')
+        //     setComicList(undefined)
+        //     setTotal(0)
+        // } else if ((bothStatus === false) && ((characterFilter && characterFilter.id != '') || (creatorFilter && creatorFilter.id != ''))) {
+        //     console.log('status false, comics only')
+        //     setComicList(comics)
+        //     setTotal(totalComics)
+        // } 
+        else {
             console.log('comics only')
             setComicList(comics)
             setTotal(totalComics)
