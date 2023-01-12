@@ -1,6 +1,7 @@
 import React from "react"
 import styles from '../styles/Detail.module.css'
 import { Root } from "./Interfaces"
+import { Karla } from '@next/font/google'
 
 type Props = {
     comic: Root,
@@ -8,8 +9,12 @@ type Props = {
     newDate: string,
 }
 
-export default function Detail({comic, title, newDate}: Props) {
+const karla = Karla({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+})
 
+export default function Detail({comic, title, newDate}: Props) {
     const creators: (string)[] = comic.creators.available > 0 ? comic.creators.items.map((item: { name: any })=>{
         return (
             item.name
@@ -34,16 +39,17 @@ export default function Detail({comic, title, newDate}: Props) {
     let formattedCreators: string[] = [...singleCreator, ...multipleCreators, ...lastCreator]
 
     return (
-        <div>
+        <div >
             <div className={styles.card}>
                 <h3 className={styles.title}>{title}</h3>
-                <div className={styles.innerText}>
+               <div className={karla.className}> <div className={styles.innerText} >
                     <p className={styles.heading}>Issue: 
                     <span className={styles.span}> {comic.issueNumber}</span></p>
                     <p className={styles.heading}>Published: </p>
                     <span className={styles.span}> {newDate}</span> 
                     <p className={styles.heading}>Creators: </p>
                     <span className={styles.span}> {formattedCreators}</span>
+                </div>
                 </div>
              </div>
         </div>

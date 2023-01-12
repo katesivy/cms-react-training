@@ -13,14 +13,15 @@ import { Root } from './Interfaces'
 import Favorites from "./Favorites";
 import ShowFavorites from "./ShowFavorites";
 import ShowFilters from "./ShowFilters";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
 
 export default function ComicList () {
     const { comics, totalComics } = useFetchComics();
     const { creatorFilteredComics, totalCreators } = useFetchCreators();
     const { characterFilteredComics, totalChars } = useFetchCharacters();
-    const { bothSelectedComics, bothTotal, bothStatus } = useFetchBoth();
-    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, showFilters, setShowFilters, isFiltersOpen, characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter }  = useContext(AppContext);
+    const { bothSelectedComics, bothTotal } = useFetchBoth();
+    const { storageFavs, setTotal, isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, showFilters, setShowFilters, isFiltersOpen }  = useContext(AppContext);
     const [comicList, setComicList] = useState<Root | undefined>()
     const [windowSize, setWindowSize] = useState<number>(0);
 
@@ -32,24 +33,19 @@ export default function ComicList () {
     }
 
     useEffect(() => {
-        console.log('1st: innerwidth', innerWidth, windowSize)
         if (innerWidth >= 640) {
-            console.log('1st useeffect, setting to false')
             setShowFavorites(false)
             setShowFilters(false)
             setIsFavoritesOpen(false)
         } else {
-            console.log('2nd use effect, setting to true')
             setShowFavorites(true)
             setShowFilters(true)
         }
     });
 
     useEffect(() => {
-        console.log('handle windowsize', innerWidth)
         function handleWindowResize() {
             setWindowSize(innerWidth);
-            console.log('2nd: innerwidth', innerWidth, windowSize)
             if (innerWidth >= 640) {
                 console.log('bigger, setting to false')
                 setShowFavorites(false)
@@ -69,7 +65,6 @@ export default function ComicList () {
     }, [innerWidth]);
 
     useEffect(() => {
-        // console.log('comiclist bothStatus in useEffect', bothStatus, 'filters:', creatorFilter, characterFilter)
         if (bothSelectedComics && bothSelectedComics.length) {
             console.log('both')
             setComicList(bothSelectedComics)
@@ -82,29 +77,12 @@ export default function ComicList () {
             console.log('char only')
             setComicList(characterFilteredComics)
             setTotal(totalChars)
-        } 
-        // else if ((bothStatus === false) && (characterFilter && creatorFilter)) {
-        //     console.log('no comics')
-        //     setComicList(undefined)
-        //     setTotal(0)
-        // } else if ((bothStatus === false) && ((characterFilter && characterFilter.id != '') || (creatorFilter && creatorFilter.id != ''))) {
-        //     console.log('status false, comics only')
-        //     setComicList(comics)
-        //     setTotal(totalComics)
-        // } 
-        else {
+        } else {
             console.log('comics only')
             setComicList(comics)
             setTotal(totalComics)
         }
 
-        // console.log('char bothStatus', bothStatus)
-        // if ((bothStatus === false) && (characterFilter == undefined)) {
-        //     setCharacterFilter({name: 'Character', id: ''})
-        // }
-        // if ((bothStatus === false) && (creatorFilter == undefined)) {
-        //     setCreatorFilter({fullName: 'Creator', id: ''})
-        // }
     }, [comics, creatorFilteredComics, characterFilteredComics, bothSelectedComics])
 
     return (
@@ -112,7 +90,7 @@ export default function ComicList () {
         <div className={styles.comicsSection}>
             <div className={styles.filterBox}>
                 <div className={styles.filterOptions}>
-                    {showFilters && <ShowFilters />} 
+                    {showFilters && <ShowFilters />}
                     <div className={styles.dropdowns}>
                         {showFilters && isFiltersOpen && <CharacterDropdown  />}
                         {showFilters && isFiltersOpen && <CreatorDropdown  />}
@@ -122,16 +100,16 @@ export default function ComicList () {
                     {showFavorites && <ShowFavorites />}
                 </div>
                 {showFavorites && isFavoritesOpen && <Favorites />}
+                    {showFavorites && isFavoritesOpen &&
+                    <button className={styles.dropdownButtonHide} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
+                        Hide Favorites
+                        <FontAwesomeIcon className={styles.icon} icon={faBolt} />
+                    </button>
+                    }
                 {!showFilters && <CharacterDropdown  />} 
                 {!showFilters && <CreatorDropdown  />}
             </div>
 
-                {/* {isFavoritesOpen &&
-                    <button className={styles.dropdownButtonHide} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
-                        'Hide Favorites'
-                        <FontAwesomeIcon className={styles.icon} icon={faBolt} />
-                    </button>
-                 } */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px), 4fr))', background: '#F8F8F2', gap: '10px' }} className={styles.grid}>
                 {comicList && comicList.map((comic: Root, index: number) => {
                     var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });

@@ -6,8 +6,12 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 import { Character } from "./Interfaces";
 import useFetchCharacters from "../hooks/useFetchCharacters";
-import useFetchBoth from "../hooks/useFetchBoth";
+import { Karla } from '@next/font/google'
 
+const karla = Karla({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+})
 
 export default function CharacterDropdown () {
     const characterArray: Character[] = [
@@ -24,7 +28,6 @@ export default function CharacterDropdown () {
     ]
     const { characterFilter, setCharacterFilter, showFilters } = useContext(AppContext);
     const { characterFilteredComics } = useFetchCharacters();
-    const { bothStatus } = useFetchBoth();
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, character: { name: string; id: string; }) => {
@@ -37,23 +40,23 @@ export default function CharacterDropdown () {
     }
   
     return (
-      <div>
-         <label className={styles.label}>
-           {!showFilters && <>Filter by:</>}
-            <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
-                { (characterFilter.id == '' ) || (characterFilter.id == undefined) || (characterFilteredComics && !characterFilteredComics.length)
-                ? 'Character' 
-                : characterFilter.name }
-                <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
-            </button>
-            {open && <div className={styles.dropdownDiv}>
-                {characterArray.map((character, index) => {
-                    return (
-                        <ul className={styles.ul} key={index} onClick={(e) => handleClick(e, character)}>{character.name}</ul>
-                        )
-                })}
-            </div>}
-        </label>
-      </div>
+        <div className={karla.className}>
+            <label className={styles.label}>
+            {!showFilters && <>Filter by:</>}
+                <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
+                    { (characterFilter.id == '' ) || (characterFilter.id == undefined) || (characterFilteredComics && !characterFilteredComics.length)
+                    ? 'Character' 
+                    : characterFilter.name }
+                    <FontAwesomeIcon className={styles.angleIcon} icon={faAngleDown} />
+                </button>
+                {open && <div className={styles.dropdownDiv}>
+                    {characterArray.map((character, index) => {
+                        return (
+                            <ul className={styles.ul} key={index} onClick={(e) => handleClick(e, character)}>{character.name}</ul>
+                            )
+                    })}
+                </div>}
+            </label>
+        </div>
     );
 }

@@ -1,14 +1,13 @@
 .label {
     margin-left: 20px;
     background-color: #222222;
-    /* display: flex; */
     border-radius: 4px;
     font-weight: bold;
+    font-size: 14px;
+    
 }
 
 .dropdownButton {
-    /* display: flex;
-    justify-content: space-between; */
     margin-left: 10px;
     padding: 5px;
     min-width: 245px;
@@ -18,13 +17,17 @@
     border-radius: 3px;
     color: #F8F8F2;
     text-align: start;
+    font-family: '__Karla_b1e84d';
+    font-size: 16px;
+    letter-spacing: 0px;
 }
 
 .dropdownDiv {
+    margin-left: 30px;
     background-color: #222222;
     border: solid;
-    margin-left: 30px;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .ul {

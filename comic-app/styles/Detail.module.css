@@ -1,11 +1,13 @@
 .card {
     padding: 0;
     margin: 0;
+    color: #222222;
 }
 
 .title {
     margin-top: 0px;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .heading {
@@ -16,5 +18,12 @@
 
 .span {
     font-weight: 400;
+    letter-spacing: 0px;
+}
+
+.p {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
 }
 

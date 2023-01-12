@@ -5,7 +5,7 @@
 
 .filterBox {
       display: inline-flex;
-      /* justify-content: flex-start; */
+      justify-content: flex-start;
       width: 100%;
       padding: 15px 10px 15px 10px;
       background-color: #222222;
@@ -14,16 +14,31 @@
       font-size: 16px;
 }
 
+.filterOptions {
+    display: none;
+}
+
+.favOptions {
+    display: none;
+}
+
 @media (max-width: 640px) {
     .filterBox {
         display: flex;
+        padding: 0;
         flex-wrap: wrap;
         max-width: 100%;
         color: #F8F8F2;
         justify-content: space-between;
     }
 
+    .favOptions {
+        display: block;
+        padding: 10px;
+    }
+
     .filterOptions {
+        padding: 10px;
         align-self: center;
         display: flex;
         flex-wrap: wrap;
@@ -41,5 +56,20 @@
     .grid {
         max-width: 350px;
         margin: 0 auto;
+    }
+
+    .dropdownButtonHide {
+        padding: 10px;
+        height: 40px;
+        width: 100%;
+        border: solid #C24868;
+        color: white;
+        background-color: #C24868;
+        font: 'Montserrat';
+        font-weight: bold;
+    }
+
+    .icon {
+        margin-left: 5px;
     }
 }

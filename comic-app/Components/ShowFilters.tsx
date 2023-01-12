@@ -10,12 +10,10 @@ export default function ShowFilters () {
   
     return (
       <div className={styles.showFilterDiv}>
-         {/* <label className={styles.label}> */}
             <button className={styles.dropdownButton} onClick={() => { setIsFiltersOpen(prevState => !prevState)}}>
                 Filter
                 <FontAwesomeIcon className={styles.icon} icon={faFilter} />
             </button>
-        {/* </label> */}
       </div>
     );
 }

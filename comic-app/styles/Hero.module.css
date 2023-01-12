@@ -5,7 +5,6 @@
     height: 775px; 
     width: 100vw;
     position: relative;
-    /* background: #F8F8F2; */
     background:  #F8F8F2;
   }
 
@@ -68,7 +67,6 @@
   .heroTitleBox {
     margin: 0 auto;
     top: -50px;
-    /* left: 0; */
     width: 256px;
     height: 66px;
   }
@@ -122,7 +120,7 @@
 
 @media (max-width: 640px) {
     .newComicsBox {
-        transform: translate(100px, -10px) rotate(-5deg);
+        transform: translate(60px, -10px) rotate(-5deg);
     }
 }
 
@@ -132,7 +130,6 @@
     left: 10px;
     width: 127px;
     height: 0;
-    /* text-align: center; */
     font: normal normal 900 18px/16px Montserrat;
     letter-spacing: 0px;
     color: #F8F8F2;
@@ -142,7 +139,6 @@
 
 .comingOutDaily {
     position: absolute;
-    /* top: 565px; */
     width: 469px;
     height: 59px;
     text-align: left;
@@ -157,7 +153,7 @@
   .comingOutDaily {
     position: relative;
     top: 80px;
-    left: 112px;
+    left: 60px;
     width: 239px;
     height: 30px;
     text-align: left;

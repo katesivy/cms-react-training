@@ -2,11 +2,8 @@ import React, { createContext, useContext } from 'react';
 import { useToggleFavorites } from '../hooks/useToggleFavorites';
 import { useDropdown } from '../hooks/useDropdown';
 import { usePagination } from '../hooks/usePagination';
-import {  Character, Creator, Favs, Root } from '../Components/Interfaces';
+import {  Character, Creator, Favs } from '../Components/Interfaces';
 import { useMobileMenus } from '../hooks/useMobileMenus';
-import useFetchBoth from '../hooks/useFetchBoth';
-import Comic from '../Components/Comic';
-import ComicList from '../Components/ComicList';
 
 type SetStateAction<S> = S | ((prevState: S) => S);
 
@@ -16,7 +13,6 @@ type InitialValues = {
     isFavorite: boolean,
     isFavoritesOpen: boolean,
     isFiltersOpen: boolean,
-    windowSize: number,
     showFavorites: boolean,
     showFilters: boolean,
     storageFavs: Favs[],
@@ -29,7 +25,6 @@ type InitialValues = {
     setIsFiltersOpen: Dispatch<SetStateAction<boolean>>,
     setShowFavorites:  Dispatch<SetStateAction<boolean>>,
     setShowFilters:Dispatch<SetStateAction<boolean>>,
-    setWindowSize: Dispatch<SetStateAction<number>>,
     setStorageFavs: Dispatch<SetStateAction<Favs[]>>,
     setCharacterFilter: Dispatch<SetStateAction<Character>>,
     setCreatorFilter: Dispatch<SetStateAction<Creator>>,
@@ -43,7 +38,6 @@ export const AppContext = createContext<InitialValues>({
     isFiltersOpen: false,
     showFavorites: true,
     showFilters: false,
-    windowSize: 640,
     characterFilter: {
         id: '',
         name: ''
@@ -60,7 +54,6 @@ export const AppContext = createContext<InitialValues>({
     setIsFiltersOpen: () => false,
     setShowFavorites: () => false,
     setShowFilters: () => false,
-    setWindowSize: () => 0,
     setStorageFavs: () => [],
     setCharacterFilter: () => {},
     setCreatorFilter: () => {},
@@ -71,14 +64,13 @@ export const AppContext = createContext<InitialValues>({
 export default function PageWrapper ({ children }: any) {
     const { isFavorite, toggleFavorite, storageFavs, setStorageFavs } = useToggleFavorites();  
     const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter } = useDropdown();
-    const { isFavoritesOpen, setIsFavoritesOpen, windowSize, setWindowSize, showFavorites, setShowFavorites, showFilters, setShowFilters, isFiltersOpen, setIsFiltersOpen } = useMobileMenus();
+    const { isFavoritesOpen, setIsFavoritesOpen, showFavorites, setShowFavorites, showFilters, setShowFilters, isFiltersOpen, setIsFiltersOpen } = useMobileMenus();
     const { total, offset, setTotal, setOffset } = usePagination();
 
     return (
         <AppContext.Provider
             value={{
                 isFavorite,
-                windowSize,
                 showFavorites,
                 showFilters,
                 isFavoritesOpen,
@@ -93,12 +85,11 @@ export default function PageWrapper ({ children }: any) {
                 setIsFiltersOpen,
                 setShowFavorites,
                 setShowFilters,
-                setWindowSize,
                 setStorageFavs,
                 setCharacterFilter,
                 setCreatorFilter,
                 setTotal,
-                setOffset,             
+                setOffset
             }}
         >
             {children}

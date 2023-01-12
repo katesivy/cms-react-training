@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import Hero from '../Components/Hero';
 import ComicList from '../Components/ComicList'
 import styles from '../styles/Home.module.css'
-import Favorites from '../Components/Favorites';
-import PageWrapper, { AppContext } from '../state/PageWrapper'
+import PageWrapper from '../state/PageWrapper'
+import { Montserrat, Karla } from '@next/font/google'
 
+const montserrat = Montserrat({
+  subsets: ['latin'],
+})
 
 export default function Home() {
   return (
@@ -13,7 +16,7 @@ export default function Home() {
     <Head>
       <title>Comic App</title>
     </Head>
-    <main >
+    <main className={montserrat.className}>
     <PageWrapper>
         <div className={styles.appContainer} >
             <Hero />

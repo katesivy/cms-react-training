@@ -6,7 +6,12 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../state/PageWrapper";
 import { Creator } from "./Interfaces";
 import useFetchCreators from "../hooks/useFetchCreators";
-import useFetchBoth from "../hooks/useFetchBoth";
+import { Karla } from '@next/font/google'
+
+const karla = Karla({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+})
 
 export default function CreatorDropdown () {
     const creatorArray: Creator[] = [
@@ -21,12 +26,10 @@ export default function CreatorDropdown () {
     ]
     const { creatorFilter, setCreatorFilter  } = useContext(AppContext);
     const { creatorFilteredComics } = useFetchCreators();
-    const {  bothStatus, setBothStatus } = useFetchBoth();
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>, creator: Creator) => {
         e.preventDefault();
-        // setBothStatus(true)
         setOpen(prevState => !prevState);
         if (creatorFilteredComics && !creatorFilteredComics.length) {
             setCreatorFilter({fullName: 'Creator', id: ''})
@@ -35,9 +38,8 @@ export default function CreatorDropdown () {
     }
   
     return (
-      <div>
-         <label className={styles.label}>
-            
+     <div className={karla.className}>
+        <label className={styles.label}>
         <button className={styles.dropdownButton} onClick={() => { setOpen(prevState => !prevState)}}>
                 { (creatorFilter.id == '' ) || (creatorFilter.id == undefined) || ( creatorFilteredComics && !creatorFilteredComics.length )
                     ? 'Creator' 
@@ -52,6 +54,6 @@ export default function CreatorDropdown () {
                 })}
             </div> }
         </label>
-      </div>
+    </div>
     );
 }

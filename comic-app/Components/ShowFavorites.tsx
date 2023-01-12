@@ -10,12 +10,10 @@ export default function ShowFavorites () {
   
     return (
       <div className={styles.showFavDiv} >
-         {/* <label className={styles.label}> */}
             <button className={styles.dropdownButton} onClick={() => { setIsFavoritesOpen(prevState => !prevState)}}>
                 {!isFavoritesOpen ? 'Show Favorites' : 'Hide Favorites'}
                 <FontAwesomeIcon className={styles.icon} icon={faBolt} />
             </button>
-        {/* </label> */}
       </div>
     );
 }
