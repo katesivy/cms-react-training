@@ -33,11 +33,14 @@ export default function Hero() {
     const borderImage: any =
         <Image className={styles.borderImage}
             loader={myLoader}
-            src={borderPhoto}
+            src={borderPhoto2}
             alt='hero border'
+            layout="fill"
+            // width={1440}
+            // height={350}
             sizes="(max-width: 400px) 100wv,
-            (max-width: 640px) 100vw,
-            33vw"
+            (max-width: 1440px) 100vw, (min-height: 100%)
+            99vw"
         />
 
     const logoImage: any =

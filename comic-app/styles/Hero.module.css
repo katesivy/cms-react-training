@@ -41,19 +41,46 @@
   }
 }
 
+.borderImgContainer {
+  position: relative;
+  display: block;
+  top: -150px;
+}
+
+@media (max-width: 640px) {
+  .borderImgContainer {
+    top: 200px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1040px) {
+  .borderImgContainer {
+    top: -115px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1440px) {
+  .borderImgContainer {
+    top: -135px;
+    height: 150px;
+    width: 100%;
+  }
+}
+
 .borderImage {
+    position: relative !important;
     background: url('/halftone@2x.png');
-    position: relative;
-    top: -150px;
+    object-fit: cover;
 }
 
 @media (max-width: 640px) {
   .borderImage {
     background: url('/halftone.png');
-    top: 165px;
   }
 }
-  
+
 .heroTitleBox {
     position: absolute;
     transform: translate(0px, 200px);
@@ -90,9 +117,9 @@
 
 .headingContainer {
   position: absolute;
-  top: 700px;
-  width: 500px;
+  top: 800px;
   height: 100px;
+  left: 40px;
   z-index: 4;
 }
 
@@ -105,6 +132,22 @@
 @media (min-width: 641px) and (max-width: 1040px) {
   .headingContainer {
       top: 500px;
+      left: 125px;
+      width: 500px;
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1440px) {
+  .headingContainer {
+      top: 650px;
+      left: 240px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .headingContainer {
+      top: 775px;
+      left: 275px;
   }
 }
 
@@ -120,7 +163,7 @@
 
 @media (max-width: 640px) {
     .newComicsBox {
-        transform: translate(60px, -10px) rotate(-5deg);
+        transform: translate(-25px, -10px) rotate(-5deg);
     }
 }
 
@@ -153,7 +196,7 @@
   .comingOutDaily {
     position: relative;
     top: 80px;
-    left: 60px;
+    left: -25px;
     width: 239px;
     height: 30px;
     text-align: left;
@@ -163,8 +206,9 @@
 
 .latin {
     position: absolute;
-    top: 800px;
-    width: 670px;
+    top: 870px;
+    width: 570px;
+    max-width: 570px;
     height: 120px;
     text-align: left;
     font: normal normal normal 20px/32px Montserrat;
@@ -177,7 +221,7 @@
 @media (max-width: 640px) {
     .latin {
         position: relative;
-        top: 220px;
+        top: 320px;
         left: 0;
         width: 91%;
     }
@@ -185,7 +229,22 @@
 
 @media (min-width: 641px) and (max-width: 1040px) {
     .latin {
-        top: 600px;
-        width: 80vw;
+        top: 570px;
+        left: 130px;
+        padding: 5px;
     }
+}
+
+@media (min-width: 1041px) and (max-width: 1440px) {
+  .latin {
+      top: 750px;
+      left: 250px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .latin {
+      top: 850px;
+      left: 280px;
+  }
 }
