@@ -11,6 +11,12 @@
     cursor: pointer;
 }
 
+@media (max-width: 640px) {
+    .iconContainer {
+        transform: translate(15px, 0)
+    }
+}
+
 .iconContainer:hover {
     pointer-events: auto;
 }

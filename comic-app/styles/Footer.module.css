@@ -1,0 +1,28 @@
+.footerDiv {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 268px;
+    width: 100%;
+    background-color:#222222;
+    color: #F8F8F2;
+}
+
+.logoDiv {
+    margin: 0 auto;
+}
+
+.linksDiv {
+    margin: 10px auto;
+    
+}
+
+.aDiv {
+    text-decoration: underline;
+}
+
+.copyrightDiv {
+    margin: 10px auto;
+}

@@ -47,12 +47,10 @@ export default function ComicList () {
         function handleWindowResize() {
             setWindowSize(innerWidth);
             if (innerWidth >= 640) {
-                console.log('bigger, setting to false')
                 setShowFavorites(false)
                 setShowFilters(false)
                 setIsFavoritesOpen(false)
             } else {
-                console.log('smaller, setting to true')
                 setShowFavorites(true)
                 setShowFilters(true)
             }
@@ -110,11 +108,11 @@ export default function ComicList () {
                 {!showFilters && <CreatorDropdown  />}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px), 4fr))', background: '#F8F8F2', gap: '10px' }} className={styles.grid}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(175px), 1fr))', background: '#F8F8F2', gap: '20px' }} className={styles.grid}>
                 {comicList && comicList.map((comic: Root, index: number) => {
-                    var month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
-                    var d = new Date(comic.dates[0].date)
-                    var newDate = month + ' ' + d.getDate() + ', ' + d.getFullYear()
+                    let month: string = new Date(comic.dates[0].date).toLocaleString('en-US', { month: 'long' });
+                    let d = new Date(comic.dates[0].date)
+                    let newDate = month + ' ' + d.getDate() + ', ' + d.getFullYear()
                     let splitTitle = comic.title.split('(')[0];
                     comic.favStatus = false;
                     const result = storageFavs && storageFavs.find(({ id }: any) => id === comic.id);

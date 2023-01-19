@@ -3,6 +3,12 @@
     background:  #F8F8F2;
 }
 
+@media (max-width: 640px) {
+    .comicsSection {
+        padding: 20px;
+    }
+}
+
 .filterBox {
       display: inline-flex;
       justify-content: flex-start;
@@ -20,6 +26,10 @@
 
 .favOptions {
     display: none;
+}
+
+.grid {
+    width: 100%;
 }
 
 @media (max-width: 640px) {

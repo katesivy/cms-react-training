@@ -4,7 +4,8 @@ import Hero from '../Components/Hero';
 import ComicList from '../Components/ComicList'
 import styles from '../styles/Home.module.css'
 import PageWrapper from '../state/PageWrapper'
-import { Montserrat, Karla } from '@next/font/google'
+import { Montserrat } from '@next/font/google'
+import Footer from '../Components/Footer';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function Home() {
             <div className={styles.mainContainer}>
                 <ComicList />
             </div>
+            <Footer />
         </div>
     </PageWrapper>
     </main>

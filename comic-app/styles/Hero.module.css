@@ -70,10 +70,19 @@
   }
 }
 
+@media (min-width: 1441px) {
+  .borderImgContainer {
+    top: -175px;
+    height: 375px;
+    width: 100%;
+  }
+}
+
 .borderImage {
     position: relative !important;
     background: url('/halftone@2x.png');
     object-fit: cover;
+    width: 100vw;
 }
 
 @media (max-width: 640px) {
@@ -153,8 +162,8 @@
 
 @media (min-width: 1041px) and (max-width: 1440px) {
   .headingContainer {
-      top: 650px;
-      left: 240px;
+      top: 750px;
+      left: 340px;
   }
 }
 
@@ -162,6 +171,12 @@
   .headingContainer {
       top: 775px;
       left: 275px;
+  }
+}
+
+@media (min-width: 1541px) {
+  .headingContainer {
+    top: 830px;
   }
 }
 
@@ -250,8 +265,8 @@
 
 @media (min-width: 1041px) and (max-width: 1440px) {
   .latin {
-      top: 750px;
-      left: 250px;
+      top: 825px;
+      left: 350px;
   }
 }
 
@@ -261,5 +276,11 @@
       left: 280px;
       width: 800px;
       max-width: 800px;
+  }
+}
+
+@media (min-width: 1541px) {
+  .latin {
+    top: 900px;
   }
 }

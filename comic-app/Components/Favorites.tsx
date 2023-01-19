@@ -12,7 +12,7 @@ type LoaderProps = {
 }
 
 export default function Favorites () {
-    const { isFavorite, toggleFavorite, storageFavs, setStorageFavs, windowSize, setWindowSize }  = useContext(AppContext);
+    const { isFavorite, toggleFavorite, storageFavs, setStorageFavs }  = useContext(AppContext);
     const [list, setList] = useState<JSX.Element[] | undefined>([]);
 
     const myLoader = ({ src, width, quality }: LoaderProps) => {

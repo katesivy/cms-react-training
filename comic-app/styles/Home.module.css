@@ -4,7 +4,7 @@
 
 .mainContainer {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   padding: 0;
   width: 100%;
   background:  #F8F8F2;
@@ -30,6 +30,6 @@
 
 @media (min-width: 1025px) {
   .mainContainer {
-    padding-top: 270px;
+    padding: 270px 60px 60px 60px;
   }
 }

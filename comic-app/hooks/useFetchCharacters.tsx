@@ -4,7 +4,7 @@ import { Root } from '../Components/Interfaces'
 
 
 export default function useFetchCharacters () {
-    const { characterFilter, setCharacterFilter, creatorFilter, setCreatorFilter, offset } = useContext(AppContext);
+    const { characterFilter, setCharacterFilter, creatorFilter, offset } = useContext(AppContext);
     const [characterFilteredComics, setCharacterFilteredComics] = useState<Root | undefined>()
     const [totalChars, setTotalChars] = useState<number>(0)
     const [isLoading, setLoading] = useState<boolean>(false)

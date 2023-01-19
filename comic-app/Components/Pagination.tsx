@@ -11,7 +11,6 @@ export default function Pagination () {
     const { total, offset, setOffset } = useContext(AppContext);
 
     function reducer(state: { count: number; }, action: { type: string; }) {
-        console.log('statecount', state.count, 'pagination total', total)
         switch (action.type) {
             case 'add': 
                 setOffset(state.count + 15)
@@ -26,7 +25,6 @@ export default function Pagination () {
                     }
                 }
             case 'subtract': 
-                console.log('statecount', state.count)
                 setOffset(state.count - 15)
                 if (state.count <= 15) {
                     return {
@@ -58,7 +56,7 @@ export default function Pagination () {
                 <button className={styles.iconContainer} onClick={() => dispatch({type: 'add'})}>
                     <FontAwesomeIcon className={styles.icon} icon={faAngleRight} />
                 </button>
-                <button onClick={() => {dispatch({type: 'reset'}), setOffset(state.count)}}>Reset</button>
+                {/* <button onClick={() => {dispatch({type: 'reset'}), setOffset(state.count)}}>Reset</button> */}
             </div>
         )
     }
